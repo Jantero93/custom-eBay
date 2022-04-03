@@ -27,7 +27,7 @@ export default Vue.extend({
 }
 
 nav {
-  padding: 30px;
+  padding: 1.5em;
 }
 
 nav a {

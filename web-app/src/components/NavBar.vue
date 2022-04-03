@@ -8,7 +8,9 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ms-auto d-flex flex-row">
-        <b-button size="md" variant="success">List Item</b-button>
+        <b-button v-b-modal.modal-lg size="md" variant="success"
+          >List Item</b-button
+        >
         <b-form-input class="ms-5" placeholder="Search" />
         <b-button class="ms-2" size="md" variant="outline-info" type="submit"
           >Search</b-button
@@ -19,8 +21,19 @@
         <b-link to="my-ebay">My eBay</b-link>
       </b-navbar-nav>
     </b-collapse>
+    <ListItemModal />
   </b-navbar>
 </template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+import ListItemModal from '@/components/ListItemModal.vue';
+
+export default Vue.extend({
+  components: { ListItemModal }
+});
+</script>
 
 <style scoped>
 .navigation-bar {
