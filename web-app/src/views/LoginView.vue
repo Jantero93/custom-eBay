@@ -1,20 +1,33 @@
 <template>
   <div class="d-flex flex-column align-items-center">
-    <div>first</div>
-    <EbayLogo :size="1" />
-    <div>third</div>
+    <b-img class="w-25 mt-md-2" :src="require('@/assets/ebay-image.png')" />
+    <h1>Sign in to custom eBay</h1>
+    <LoginForm class="mt-md-2" @submit-clicked="postLogin" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 
-import EbayLogo from '@/icons/EbayLogo.vue';
+import LoginForm from '@/components/loginview/LoginForm.vue';
+
+type UserData = {
+  email: string;
+  password: string;
+};
 
 export default Vue.extend({
   name: 'LoginView',
-  components: { EbayLogo }
+  components: { LoginForm },
+  methods: {
+    createAccountClicked() {
+      // TODO: Open modal for creating new user
+      console.log('create account clicked');
+    },
+    postLogin(userData: UserData) {
+      // TODO: Make api call post login
+      console.log(`userData`, userData);
+    }
+  }
 });
 </script>
-
-<style scoped></style>
