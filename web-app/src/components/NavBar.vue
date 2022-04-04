@@ -16,8 +16,8 @@
 
       <b-navbar-nav id="my-ebay" class="ml-auto">
         <b-nav-item-dropdown text="my eBay">
+          <b-dropdown-item to="/login">Login</b-dropdown-item>
           <b-dropdown-item v-b-modal.modal-lg>List Item</b-dropdown-item>
-          <b-dropdown-item href="#">Sign in</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -57,7 +57,8 @@ button {
   text-align: center;
 }
 
-nav a.router-link-exact-active {
+nav a.router-link-exact-active,
+.router-link-active {
   color: #42b983;
 }
 

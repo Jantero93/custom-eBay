@@ -107,8 +107,7 @@ export default Vue.extend({
 
       if (this.state.errors.length) return;
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      this.$nextTick(() => (this.$refs.mymodal as any).hide());
+      this.$nextTick(() => this.$bvModal.hide('modal-lg'));
     },
     validateInput() {
       this.state.errors = [];
