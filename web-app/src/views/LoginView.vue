@@ -20,10 +20,6 @@ export default Vue.extend({
   name: 'LoginView',
   components: { LoginForm },
   methods: {
-    createAccountClicked() {
-      // TODO: Open modal for creating new user
-      console.log('create account clicked');
-    },
     postLogin(userData: UserData) {
       // TODO: Make api call post login
       console.log(`userData`, userData);

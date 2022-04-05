@@ -1,9 +1,13 @@
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
 
+using backend.Interfaces;
+using backend.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<ILoggerService, LoggerService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

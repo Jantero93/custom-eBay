@@ -1,12 +1,9 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using backend.Models;
+using backend.Interfaces;
 
 namespace backend.Controllers
 {
@@ -15,17 +12,22 @@ namespace backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly ILoggerService _loggerService;
 
-        public UsersController(DataContext context)
+        public UsersController(DataContext context, ILoggerService loggerService)
         {
             _context = context;
+            _loggerService = loggerService;
+
         }
 
         // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            _loggerService.LogMe("####################################");
+            return await _loggerService.GetUsers();
+            // return await _context.Users.ToListAsync
         }
 
         // GET: api/Users/5
