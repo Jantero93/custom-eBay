@@ -1,8 +1,8 @@
 <template>
   <div class="d-flex flex-column align-items-center">
-    <b-img class="w-25 mt-md-2" :src="require('@/assets/ebay-image.png')" />
+    <b-img class="w-25 mt-2" :src="require('@/assets/ebay-image.png')" />
     <h1>Sign in to custom eBay</h1>
-    <LoginForm class="mt-md-2" @submit-clicked="postLogin" />
+    <LoginForm class="mt-2" @submit-clicked="postLogin" />
   </div>
 </template>
 

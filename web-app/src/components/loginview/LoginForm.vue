@@ -23,6 +23,12 @@
       </b-form-group>
       <b-button type="submit" variant="success">Submit</b-button>
     </b-form>
+    <p class="mt-3">
+      New to custom eBay?
+      <router-link :to="`${$router.currentRoute.path}/signup`"
+        >Create account</router-link
+      >.
+    </p>
   </b-card>
 </template>
 
