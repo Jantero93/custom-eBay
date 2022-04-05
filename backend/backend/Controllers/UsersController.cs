@@ -12,12 +12,11 @@ namespace backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
-        private readonly ILoggerService _loggerService;
-
-        public UsersController(DataContext context, ILoggerService loggerService)
+        private readonly IUserService _userService;
+        public UsersController(DataContext context, IUserService userService)
         {
             _context = context;
-            _loggerService = loggerService;
+            _userService = userService;
 
         }
 
@@ -25,8 +24,7 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            _loggerService.LogMe("####################################");
-            return await _loggerService.GetUsers();
+            return await _userService.GetUsers();
             // return await _context.Users.ToListAsync
         }
 
@@ -34,7 +32,7 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(long id)
         {
-            var user = await _context.Users.FindAsync(id);
+            User user = await _userService.GetUser(id);
 
             if (user == null)
             {
