@@ -12,7 +12,12 @@
     <b-form>
       <b-form-group>
         <label>Name*</label>
-        <b-form-input id="state-input" v-model="state.itemName"></b-form-input>
+        <b-form-input
+          id="state-input"
+          v-model="state.itemName"
+          trim
+          type="text"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group>
@@ -21,11 +26,12 @@
           id="state-input"
           v-model="state.price"
           type="number"
+          trim
         ></b-form-input>
       </b-form-group>
 
       <b-form-group>
-        <label>Condition</label>
+        <label>Condition*</label>
         <b-form-select v-model="state.condition" class="mb-3">
           <b-form-select-option value="New">New</b-form-select-option>
           <b-form-select-option value="Good">Good</b-form-select-option>

@@ -35,10 +35,17 @@ namespace backend.Services
             return await _context.Users.FindAsync(id);
         }
 
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<List<User>> GetUsers()
         {
 
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .OrderBy(user => user.Id)
+                .ToListAsync();
+        }
+
+        public bool IsUsernameTaken(string username)
+        {
+            return _context.Users.Any(user => user.Username == username);
         }
 
         public async Task<User> PostUser(User user)
@@ -76,5 +83,6 @@ namespace backend.Services
         {
             return _context.Users.Any(user => user.Id == id);
         }
+
     }
 }

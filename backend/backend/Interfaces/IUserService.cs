@@ -7,7 +7,8 @@ namespace backend.Interfaces
     {
         Task<bool> DeleteUser(long id);
         Task<User?> GetUser(long id);
-        Task<ActionResult<IEnumerable<User>>> GetUsers();
+        Task<List<User>> GetUsers();
+        bool IsUsernameTaken(string username);
         Task<User> PostUser(User user);
         Task<bool> PutUser(User user);
     }
