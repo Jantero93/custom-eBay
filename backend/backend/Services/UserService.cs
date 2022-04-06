@@ -43,9 +43,10 @@ namespace backend.Services
                 .ToListAsync();
         }
 
-        public bool IsUsernameTaken(string username)
+        public bool IsUsernameOrEmailTaken(string username, string email)
         {
-            return _context.Users.Any(user => user.Username == username);
+            return _context.Users
+                .Any(user => (user.Username == username) || (user.Email == email));
         }
 
         public async Task<User> PostUser(User user)

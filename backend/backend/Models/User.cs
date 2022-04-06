@@ -34,7 +34,5 @@ namespace backend.Models
         [Phone]
         public string? PhoneNumber { get; set; }
 
-
-
     }
 }

@@ -36,6 +36,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+
 // Auto migrate model change
 using (var scope = app.Services.CreateScope())
 {

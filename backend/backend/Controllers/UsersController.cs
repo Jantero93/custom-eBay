@@ -63,9 +63,9 @@ namespace backend.Controllers
         public async Task<ActionResult<User>> PostUser(User user)
         {
 
-            if (_userService.IsUsernameTaken(user.Username))
+            if (_userService.IsUsernameOrEmailTaken(user.Username, user.Email))
             {
-                return Conflict();
+                return Conflict(new {response = "Username or email already taken"});
             }
 
             return await _userService.PostUser(user);
@@ -80,7 +80,7 @@ namespace backend.Controllers
                 return NoContent();
             }
 
-            return this.StatusCode(StatusCodes.Status404NotFound, "TestTest");
+            return NotFound();
         }
     }
 }

@@ -86,7 +86,7 @@
 
         <b-button type="submit" variant="success">Sign up</b-button>
 
-        <div v-if="form.errors.length">
+        <div v-if="form.errors.length" class="mt-2 text-center">
           <ul
             v-for="error in form.errors"
             :key="error"
@@ -102,6 +102,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
+
+import { registerUser } from '@/services/user';
 
 interface ComponentState {
   firstName: string;
@@ -140,14 +142,27 @@ export default Vue.extend({
       this.form.password = '';
       this.form.passwordAgain = '';
     },
-    submitClicked(e: Event) {
+    async submitClicked(e: Event) {
       e.preventDefault();
       this.validateInput();
 
       if (this.form.errors.length) return;
 
-      // TODO: Send post to backend
-      // this.$router.replace({ path: '/login' });
+      try {
+        await registerUser({
+          username: this.form.username,
+          password: this.form.password,
+          firstName: this.form.firstName,
+          lastName: this.form.lastName,
+          email: this.form.email,
+          phoneNumber: this.form.phone
+        });
+
+        this.$router.replace({ path: '/login' });
+      } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this.form.errors.push((error as any).response.data.response);
+      }
     },
     validateInput() {
       this.form.errors = [];
