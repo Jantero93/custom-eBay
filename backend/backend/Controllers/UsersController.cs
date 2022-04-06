@@ -13,11 +13,11 @@ namespace backend.Controllers
     {
         private readonly DataContext _context;
         private readonly IUserService _userService;
+
         public UsersController(DataContext context, IUserService userService)
         {
             _context = context;
             _userService = userService;
-
         }
 
         // GET: api/Users
@@ -25,7 +25,6 @@ namespace backend.Controllers
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _userService.GetUsers();
-            // return await _context.Users.ToListAsync
         }
 
         // GET: api/Users/5
@@ -51,7 +50,7 @@ namespace backend.Controllers
             {
                 return BadRequest();
             }
-
+            /*
             _context.Entry(user).State = EntityState.Modified;
 
             try
@@ -71,6 +70,14 @@ namespace backend.Controllers
             }
 
             return NoContent();
+            */
+
+            if (await _userService.PutUser(user))
+            {
+                return NoContent();
+            }
+
+            return NotFound();
         }
 
         // POST: api/Users
@@ -78,26 +85,19 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return await _userService.PostUser(user);
         }
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            if (await _userService.DeleteUser(id))
             {
-                return NotFound();
+                return NoContent();
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return NotFound();
         }
 
         private bool UserExists(long id)
