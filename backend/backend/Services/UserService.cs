@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 using backend.Interfaces;
 using backend.Models;
@@ -37,20 +36,21 @@ namespace backend.Services
 
         public async Task<List<User>> GetUsers()
         {
-
             return await _context.Users
                 .OrderBy(user => user.Id)
                 .ToListAsync();
         }
 
-        public bool IsUsernameOrEmailTaken(string username, string email)
+        public bool IsUsernameOrEmailTaken(string? username, string? email)
         {
             return _context.Users
-                .Any(user => (user.Username == username) || (user.Email == email));
+                .Any(user => user.Username == username || user.Email == email);
         }
 
         public async Task<User> PostUser(User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -84,6 +84,5 @@ namespace backend.Services
         {
             return _context.Users.Any(user => user.Id == id);
         }
-
     }
 }
