@@ -1,6 +1,4 @@
-﻿#nullable disable
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using backend.Models;
 using backend.Interfaces;
@@ -29,7 +27,7 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(long id)
         {
-            User user = await _userService.GetUser(id);
+            User? user = await _userService.GetUser(id);
 
             if (user == null)
             {
@@ -62,10 +60,10 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-
+            // TODO: Therow error in service instead of this
             if (_userService.IsUsernameOrEmailTaken(user.Username, user.Email))
             {
-                return Conflict(new {response = "Username or email already taken"});
+                return Conflict(new { response = "Username or email already taken" });
             }
 
             return await _userService.PostUser(user);

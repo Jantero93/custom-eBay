@@ -1,8 +1,10 @@
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
 
+using backend.Helpers;
 using backend.Interfaces;
 using backend.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,13 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 // Db context
 builder.Services.AddDbContext<DataContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
     );
-
-
 
 // Allow CORS
 builder.Services.AddCors(options =>
@@ -56,5 +55,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.Run();
