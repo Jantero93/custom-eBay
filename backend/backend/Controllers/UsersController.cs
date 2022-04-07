@@ -47,12 +47,9 @@ namespace backend.Controllers
                 return BadRequest();
             }
 
-            if (await _userService.PutUser(user))
-            {
-                return NoContent();
-            }
+            await _userService.PutUser(user);
 
-            return NotFound();
+            return NoContent();
         }
 
         // POST: api/Users
@@ -60,12 +57,6 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            // TODO: Therow error in service instead of this
-            if (_userService.IsUsernameOrEmailTaken(user.Username, user.Email))
-            {
-                return Conflict(new { response = "Username or email already taken" });
-            }
-
             return await _userService.PostUser(user);
         }
 
@@ -73,12 +64,9 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
-            if (await _userService.DeleteUser(id))
-            {
-                return NoContent();
-            }
+            await _userService.DeleteUser(id);
 
-            return NotFound();
+            return NoContent();
         }
     }
 }

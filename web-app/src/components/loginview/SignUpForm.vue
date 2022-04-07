@@ -144,8 +144,8 @@ export default Vue.extend({
     },
     async submitClicked(e: Event) {
       e.preventDefault();
-      this.validateInput();
 
+      this.validateInput();
       if (this.form.errors.length) return;
 
       try {
@@ -161,7 +161,9 @@ export default Vue.extend({
         this.$router.replace({ path: '/login' });
       } catch (error) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        this.form.errors.push((error as any).response.data.response);
+        this.form.errors.push(
+          (error as any).response.data.message || 'Server error'
+        );
       }
     },
     validateInput() {

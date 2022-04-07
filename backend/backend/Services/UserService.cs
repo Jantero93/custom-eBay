@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using backend.Helpers;
 using backend.Interfaces;
 using backend.Models;
 
@@ -14,19 +15,17 @@ namespace backend.Services
             _context = context;
         }
 
-        public async Task<bool> DeleteUser(long id)
+        public async Task DeleteUser(long id)
         {
             User? user = await _context.Users.FindAsync(id);
 
             if (user == null)
             {
-                return false;
+                throw new AppException("User not found", StatusCodes.Status404NotFound);
             }
 
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-
-            return true;
         }
 
         public async Task<User?> GetUser(long id)
@@ -41,14 +40,10 @@ namespace backend.Services
                 .ToListAsync();
         }
 
-        public bool IsUsernameOrEmailTaken(string? username, string? email)
-        {
-            return _context.Users
-                .Any(user => user.Username == username || user.Email == email);
-        }
-
         public async Task<User> PostUser(User user)
         {
+            IsUsernameOrEmailTaken(user.Username, user.Email);
+
             user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
             _context.Users.Add(user);
@@ -57,7 +52,7 @@ namespace backend.Services
             return user;
         }
 
-        public async Task<bool> PutUser(User user)
+        public async Task PutUser(User user)
         {
             _context.Entry(user).State = EntityState.Modified;
 
@@ -69,15 +64,25 @@ namespace backend.Services
             {
                 if (!UserExists(user.Id))
                 {
-                    return false;
+                    throw new AppException("User not found", StatusCodes.Status404NotFound);
                 }
                 else
                 {
                     throw;
                 }
             }
+        }
+        private void IsUsernameOrEmailTaken(string? username, string? email)
+        {
+            if (_context.Users.Any(user => user.Username == username))
+            {
+                throw new AppException("Username is already taken", StatusCodes.Status409Conflict);
+            }
 
-            return true;
+            if (_context.Users.Any(user => user.Email == email))
+            {
+                throw new AppException("Email is already taken", StatusCodes.Status409Conflict);
+            }
         }
 
         private bool UserExists(long id)
