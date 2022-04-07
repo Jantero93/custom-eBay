@@ -64,6 +64,18 @@ namespace backend.Repositories
             return user;
         }
 
+        public async Task<User> GetUserByUsername(string? username)
+        {
+            User? user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
+
+            if (user == null)
+            {
+                throw new AppException("No user by username", StatusCodes.Status404NotFound);
+            }
+
+            return user;
+        }
+
         public async Task UpdateUser(User user)
         {
             _context.Entry(user).State = EntityState.Modified;

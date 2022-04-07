@@ -8,6 +8,7 @@ namespace backend.Interfaces.Repositories
         Task DeleteUser(User user);
         Task<List<User>> GetAllUsers();
         Task<User> GetUser(long id);
+        Task<User> GetUserByUsername(string? username);
         Task UpdateUser(User user);
         void EmailOrUsernameAvailable(string? email, string? username);
     }

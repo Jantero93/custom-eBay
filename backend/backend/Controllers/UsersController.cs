@@ -2,6 +2,7 @@
 
 using backend.Interfaces.Services;
 using backend.Models;
+using backend.Models.ViewModels;
 using backend.Models.DataTransferObjects;
 
 namespace backend.Controllers
@@ -21,7 +22,6 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
-
             return await _userService.GetUsers();
         }
 
@@ -29,14 +29,7 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(long id)
         {
-            UserDto? user = await _userService.GetUser(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
+            return await _userService.GetUser(id);
         }
 
         // PUT: api/Users/5
@@ -69,6 +62,21 @@ namespace backend.Controllers
             await _userService.DeleteUser(id);
 
             return NoContent();
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<UserDto>> Login(UserViewModel user)
+        {
+            string token = await _userService.Login(user);
+
+            Response.Cookies.Append("X-Access-Token", token, new CookieOptions()
+            {
+                HttpOnly = true,
+                SameSite = SameSiteMode.Strict,
+                Secure = true
+            });
+
+            return Ok();
         }
     }
 }
