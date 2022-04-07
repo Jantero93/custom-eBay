@@ -36,7 +36,6 @@ namespace backend.Services
 
         public async Task<List<User>> GetUsers()
         {
-
             return await _context.Users
                 .OrderBy(user => user.Id)
                 .ToListAsync();
@@ -85,6 +84,5 @@ namespace backend.Services
         {
             return _context.Users.Any(user => user.Id == id);
         }
-
     }
 }

@@ -5,11 +5,9 @@ namespace backend.Helpers
     {
         public int StatusCode { get; }
 
-
         public AppException(string message, int errorCode) : base(message)
         {
             StatusCode = errorCode;
         }
-
     }
 }
