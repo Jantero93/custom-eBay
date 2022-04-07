@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using backend.Models;
 using backend.Interfaces;
+using backend.Models;
+using backend.Models.DataTransferObjects;
 
 namespace backend.Controllers
 {
@@ -18,16 +19,16 @@ namespace backend.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
             return await _userService.GetUsers();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        public async Task<ActionResult<UserDto>> GetUser(long id)
         {
-            User? user = await _userService.GetUser(id);
+            UserDto? user = await _userService.GetUser(id);
 
             if (user == null)
             {
@@ -55,7 +56,7 @@ namespace backend.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<UserDto>> PostUser(User user)
         {
             return await _userService.PostUser(user);
         }

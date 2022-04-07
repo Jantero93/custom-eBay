@@ -3,6 +3,7 @@
 using backend.Helpers;
 using backend.Interfaces;
 using backend.Models;
+using backend.Models.DataTransferObjects;
 
 namespace backend.Services
 {
@@ -28,19 +29,36 @@ namespace backend.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User?> GetUser(long id)
+        public async Task<UserDto?> GetUser(long id)
         {
-            return await _context.Users.FindAsync(id);
+            return await _context.Users.Select(user => new UserDto()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber
+            }).SingleOrDefaultAsync(user => user.Id == id);
         }
 
-        public async Task<List<User>> GetUsers()
+        public async Task<List<UserDto>> GetUsers()
         {
             return await _context.Users
+                .Select(user => new UserDto()
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber
+                })
                 .OrderBy(user => user.Id)
                 .ToListAsync();
         }
 
-        public async Task<User> PostUser(User user)
+        public async Task<UserDto> PostUser(User user)
         {
             IsUsernameOrEmailTaken(user.Username, user.Email);
 
@@ -49,7 +67,15 @@ namespace backend.Services
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return user;
+            return new UserDto()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber
+            };
         }
 
         public async Task PutUser(User user)
@@ -72,6 +98,12 @@ namespace backend.Services
                 }
             }
         }
+
+        /// <summary>
+        /// Method throws error if username or email is taken.
+        /// </summary>
+        /// <exception cref="AppException" />
+
         private void IsUsernameOrEmailTaken(string? username, string? email)
         {
             if (_context.Users.Any(user => user.Username == username))

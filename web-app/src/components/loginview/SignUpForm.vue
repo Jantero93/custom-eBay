@@ -90,7 +90,7 @@
           <ul
             v-for="error in form.errors"
             :key="error"
-            class="text-danger font-weight-bold"
+            class="text-danger font-weight-bold list-unstyled"
           >
             <li>{{ error }}</li>
           </ul>
@@ -104,6 +104,8 @@
 import Vue from 'vue';
 
 import { registerUser } from '@/services/user';
+
+import { AxiosError } from 'axios';
 
 interface ComponentState {
   firstName: string;
@@ -160,9 +162,8 @@ export default Vue.extend({
 
         this.$router.replace({ path: '/login' });
       } catch (error) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.form.errors.push(
-          (error as any).response.data.message || 'Server error'
+          (error as AxiosError).response?.data.message || 'Server error'
         );
       }
     },
