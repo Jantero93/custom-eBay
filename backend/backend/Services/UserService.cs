@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-using backend.Helpers;
-using backend.Interfaces;
+﻿using backend.Interfaces.Repositories;
+using backend.Interfaces.Services;
 using backend.Models;
 using backend.Models.DataTransferObjects;
 
@@ -9,63 +7,23 @@ namespace backend.Services
 {
     public class UserService : IUserService
     {
-        private readonly DataContext _context;
+        private readonly IUserRepository _userRepository;
 
-        public UserService(DataContext context)
+        public UserService(IUserRepository userRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
         }
 
         public async Task DeleteUser(long id)
         {
-            User? user = await _context.Users.FindAsync(id);
+            User user = await _userRepository.GetUser(id);
 
-            if (user == null)
-            {
-                throw new AppException("User not found", StatusCodes.Status404NotFound);
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.DeleteUser(user);
         }
 
         public async Task<UserDto?> GetUser(long id)
         {
-            return await _context.Users.Select(user => new UserDto()
-            {
-                Id = user.Id,
-                Username = user.Username,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                PhoneNumber = user.PhoneNumber
-            }).SingleOrDefaultAsync(user => user.Id == id);
-        }
-
-        public async Task<List<UserDto>> GetUsers()
-        {
-            return await _context.Users
-                .Select(user => new UserDto()
-                {
-                    Id = user.Id,
-                    Username = user.Username,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    PhoneNumber = user.PhoneNumber
-                })
-                .OrderBy(user => user.Id)
-                .ToListAsync();
-        }
-
-        public async Task<UserDto> PostUser(User user)
-        {
-            IsUsernameOrEmailTaken(user.Username, user.Email);
-
-            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            User user = await _userRepository.GetUser(id);
 
             return new UserDto()
             {
@@ -78,48 +36,43 @@ namespace backend.Services
             };
         }
 
+        public async Task<List<UserDto>> GetUsers()
+        {
+            List<User> users = await _userRepository.GetAllUsers();
+
+            return users.ConvertAll(u => new UserDto()
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Email = u.Email,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                PhoneNumber = u.PhoneNumber
+            });
+        }
+
+        public async Task<UserDto> PostUser(User user)
+        {
+            _userRepository.EmailOrUsernameAvailable(user.Email, user.Username);
+
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
+            User savedUser = await _userRepository.AddUser(user);
+
+            return new UserDto()
+            {
+                Id = savedUser.Id,
+                Username = savedUser.Username,
+                Email = savedUser.Email,
+                FirstName = savedUser.FirstName,
+                LastName = savedUser.LastName,
+                PhoneNumber = savedUser.PhoneNumber
+            };
+        }
+
         public async Task PutUser(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(user.Id))
-                {
-                    throw new AppException("User not found", StatusCodes.Status404NotFound);
-                }
-                else
-                {
-                    throw;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Method throws error if username or email is taken.
-        /// </summary>
-        /// <exception cref="AppException" />
-
-        private void IsUsernameOrEmailTaken(string? username, string? email)
-        {
-            if (_context.Users.Any(user => user.Username == username))
-            {
-                throw new AppException("Username is already taken", StatusCodes.Status409Conflict);
-            }
-
-            if (_context.Users.Any(user => user.Email == email))
-            {
-                throw new AppException("Email is already taken", StatusCodes.Status409Conflict);
-            }
-        }
-
-        private bool UserExists(long id)
-        {
-            return _context.Users.Any(user => user.Id == id);
+            await _userRepository.UpdateUser(user);
         }
     }
 }

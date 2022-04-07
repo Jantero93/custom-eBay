@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using backend.Interfaces;
+using backend.Interfaces.Services;
 using backend.Models;
 using backend.Models.DataTransferObjects;
 
@@ -21,6 +21,7 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
+
             return await _userService.GetUsers();
         }
 

@@ -1,7 +1,7 @@
 ﻿using backend.Models;
 using backend.Models.DataTransferObjects;
 
-namespace backend.Interfaces
+namespace backend.Interfaces.Services
 {
     public interface IUserService
     {
