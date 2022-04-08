@@ -18,29 +18,18 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown id="my-ebay" text="my eBay">
             <b-dropdown-item to="/login">Login</b-dropdown-item>
-            <b-dropdown-item v-b-modal.modal-lg>List Item</b-dropdown-item>
+            <b-dropdown-item to="/list-item">List Item</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-container>
-    <ListItemModal />
   </b-navbar>
 </template>
-
-<script lang="ts">
-import Vue from 'vue';
-
-import ListItemModal from '@/components/ListItemModal.vue';
-
-export default Vue.extend({
-  components: { ListItemModal }
-});
-</script>
 
 <style scoped>
 .navigation-bar {
   font-size: 1em;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Arial, Helvetica, sans-serif;
 }
 
 a:hover {

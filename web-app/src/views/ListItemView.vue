@@ -1,20 +1,11 @@
 <template>
-  <b-modal
-    id="modal-lg"
-    ref="mymodal"
-    hide-header-close
-    ok-title="List Item"
-    title="List new item"
-    size="lg"
-    @hidden="clearInput"
-    @ok="submitClicked"
-  >
-    <b-form>
+  <b-card class="mt-5" title="List new item">
+    <b-form class="register-form" @submit.prevent="submitClicked">
       <b-form-group>
         <label>Name*</label>
         <b-form-input
-          id="state-input"
-          v-model="state.itemName"
+          id="form-input"
+          v-model="form.itemName"
           trim
           type="text"
         ></b-form-input>
@@ -23,8 +14,8 @@
       <b-form-group>
         <label>Price*</label>
         <b-form-input
-          id="state-input"
-          v-model="state.price"
+          id="form-input"
+          v-model="form.price"
           type="number"
           trim
         ></b-form-input>
@@ -32,34 +23,48 @@
 
       <b-form-group>
         <label>Condition*</label>
-        <b-form-select v-model="state.condition" class="mb-3">
+        <b-form-select v-model="form.condition" class="mb-3">
           <b-form-select-option value="New">New</b-form-select-option>
           <b-form-select-option value="Good">Good</b-form-select-option>
           <b-form-select-option value="Fair">Fair</b-form-select-option>
           <b-form-select-option value="Bad">Bad</b-form-select-option>
         </b-form-select>
       </b-form-group>
+
       <b-form-group>
         <label>Description</label>
         <b-form-textarea
-          id="state-description"
-          v-model="state.description"
-          rows="5"
+          id="form-description"
+          v-model="form.description"
+          rows="2"
         ></b-form-textarea>
       </b-form-group>
 
       <b-form-group label="Photos">
         <b-form-file
           id="file-default"
-          v-model="state.files"
+          v-model="form.files"
           accept="image/jpeg, image/png, image/gif"
           multiple
         ></b-form-file>
       </b-form-group>
 
-      <div v-if="state.errors.length">
+      <div v-if="form.files.length" class="d-flex flex-wrap mb-3">
+        <b-img
+          v-for="image in filesToImages"
+          :key="image"
+          class="m-1"
+          thumbnail
+          :src="image"
+          :style="{ maxWidth: '100px' }"
+        ></b-img>
+      </div>
+
+      <b-button type="submit" variant="success">List item</b-button>
+
+      <div v-if="form.errors.length">
         <ul
-          v-for="error in state.errors"
+          v-for="error in form.errors"
           :key="error"
           class="text-danger font-weight-bold"
         >
@@ -67,7 +72,7 @@
         </ul>
       </div>
     </b-form>
-  </b-modal>
+  </b-card>
 </template>
 
 <script lang="ts">
@@ -86,9 +91,9 @@ interface ComponentState {
 
 export default Vue.extend({
   name: 'ListItemModal',
-  data(): { state: ComponentState } {
+  data(): { form: ComponentState } {
     return {
-      state: {
+      form: {
         condition: 'New',
         description: '',
         itemName: '',
@@ -98,27 +103,25 @@ export default Vue.extend({
       }
     };
   },
+  computed: {
+    filesToImages(): string[] {
+      return this.form.files.map((file) => URL.createObjectURL(file));
+    }
+  },
   methods: {
-    clearInput() {
-      this.state.condition = 'New';
-      this.state.description = '';
-      this.state.itemName = '';
-      this.state.files = [];
-      this.state.errors = [];
-      this.state.price = 0;
-    },
     async submitClicked(e: Event) {
       e.preventDefault();
       this.validateInput();
 
-      if (this.state.errors.length) return;
+      if (this.form.errors.length) return;
 
-      this.$nextTick(() => this.$bvModal.hide('modal-lg'));
+      this.$router.replace({ path: '/' });
     },
     validateInput() {
-      this.state.errors = [];
-      if (!this.state.itemName.length) this.state.errors.push('Name required');
-      if (this.state.price < 0) this.state.errors.push('Price required');
+      this.form.errors = [];
+      if (!this.form.itemName.length) this.form.errors.push('Name required');
+      if (this.form.price < 0) this.form.errors.push('Price required');
+      if (this.form.files.length > 10) this.form.errors.push('Max 10 photos');
     }
   }
 });

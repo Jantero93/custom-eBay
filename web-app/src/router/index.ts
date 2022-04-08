@@ -30,6 +30,12 @@ const routes: Array<RouteConfig> = [
       import(
         /* webpackChunkName: "signup" */ '../components/loginview/SignUpForm.vue'
       )
+  },
+  {
+    path: '/list-item',
+    name: 'list-item',
+    component: () =>
+      import(/* webpackChunkName: "list-item" */ '../views/ListItemView.vue')
   }
 ];
 

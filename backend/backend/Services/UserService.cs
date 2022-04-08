@@ -100,7 +100,7 @@ namespace backend.Services
             await _userRepository.UpdateUser(user);
         }
 
-        public string GenerateToken(User user)
+        private string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_config["token_secret"]);

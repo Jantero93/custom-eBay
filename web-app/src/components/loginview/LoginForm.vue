@@ -30,7 +30,7 @@
       New to custom eBay?
       <router-link :to="`${$router.currentRoute.path}/signup`"
         >Create account</router-link
-      >.
+      >
     </p>
 
     <div v-if="form.errors.length" class="mt-2 text-center">

@@ -1,6 +1,10 @@
 <template>
   <b-container :style="{ maxWidth: '500px' }">
     <b-card class="mt-5" title="Register new account">
+      <p class="mt-3 text-muted">
+        Already have account?
+        <router-link :to="`/login`">Login</router-link>
+      </p>
       <b-form class="register-form" @submit.prevent="submitClicked">
         <b-form-group class="mt-3">
           <label>First name</label>
@@ -16,7 +20,6 @@
 
         <b-form-group>
           <label>Last name</label>
-
           <b-form-input
             id="input-lastname"
             v-model="form.lastName"

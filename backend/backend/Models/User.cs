@@ -15,9 +15,11 @@ namespace backend.Models
         public string? Username { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string? Password { get; set; }
 
         [Required]
+        [MaxLength(255)]
         [EmailAddress(ErrorMessage = "Invalid Email")]
         public string? Email { get; set; }
 
@@ -31,6 +33,7 @@ namespace backend.Models
 
 
         [Required]
+        [MaxLength(50)]
         [Phone]
         public string? PhoneNumber { get; set; }
 
