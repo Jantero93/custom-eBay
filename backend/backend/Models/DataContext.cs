@@ -11,7 +11,7 @@ namespace backend.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.UseSerialColumns();
+            modelBuilder.UseSerialColumns();
         }
 
         public DbSet<User> Users { get; set; } = null!;

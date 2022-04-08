@@ -16,15 +16,54 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
+          <b-nav-text
+            v-if="userLogged"
+            class="d-none d-lg-inline mr-1 text-info"
+            >Logged in</b-nav-text
+          >
           <b-nav-item-dropdown id="my-ebay" text="my eBay">
-            <b-dropdown-item to="/login">Login</b-dropdown-item>
-            <b-dropdown-item to="/list-item">List Item</b-dropdown-item>
+            <b-dropdown-item @click="logClicked">{{
+              userLogged ? 'Log out' : 'Login'
+            }}</b-dropdown-item>
+            <b-dropdown-item v-if="userLogged" to="/list-item"
+              >List Item</b-dropdown-item
+            >
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-container>
   </b-navbar>
 </template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+import { clearLoginLocalStorage } from '@/utilities/localStorageHelpers';
+
+export default Vue.extend({
+  name: 'NavBar',
+  computed: {
+    userLogged(): boolean {
+      return this.$store.getters.isLogged;
+    },
+    loggedUsername(): string {
+      return this.$store.getters.username;
+    }
+  },
+  methods: {
+    logClicked(): void {
+      if (this.userLogged) {
+        this.$store.commit('clearLoggingInfo');
+        clearLoginLocalStorage();
+        this.$router.replace({ path: '/' });
+        return;
+      }
+
+      this.$router.replace({ path: '/login' });
+    }
+  }
+});
+</script>
 
 <style scoped>
 .navigation-bar {

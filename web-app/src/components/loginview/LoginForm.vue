@@ -49,6 +49,7 @@
 import Vue from 'vue';
 
 import { loginUser } from '@/services/user';
+import { saveLoginLocalStorage } from '@/utilities/localStorageHelpers';
 
 import { AxiosError } from 'axios';
 
@@ -80,6 +81,12 @@ export default Vue.extend({
           password: this.form.password
         });
 
+        this.$store.commit('setLoggingInfo', {
+          loggedIn: true,
+          username: this.form.username
+        });
+
+        saveLoginLocalStorage();
         this.$router.replace({ path: '/' });
       } catch (error) {
         this.form.errors.push(

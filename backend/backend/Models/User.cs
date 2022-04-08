@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using backend.Helpers;
+
 namespace backend.Models
 {
     public class User
@@ -36,6 +38,8 @@ namespace backend.Models
         [MaxLength(50)]
         [Phone]
         public string? PhoneNumber { get; set; }
+
+        public UserRole Role { get; set; }
 
     }
 }

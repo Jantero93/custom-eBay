@@ -1,5 +1,8 @@
 ﻿namespace backend.Helpers
 {
+    /// <summary>
+    /// Global error handler to handle common REST API errors.
+    /// </summary>
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
@@ -28,8 +31,8 @@
                     case KeyNotFoundException:
                         response.StatusCode = StatusCodes.Status404NotFound;
                         break;
+
                     default:
-                        // Fall back
                         response.StatusCode = StatusCodes.Status500InternalServerError;
                         break;
                 }

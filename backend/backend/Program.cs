@@ -24,6 +24,7 @@ builder.Services.AddDbContext<DataContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
     );
 
+
 // Allow CORS
 builder.Services.AddCors(options =>
 {

@@ -77,6 +77,8 @@ namespace backend.Services
 
         public async Task<UserDto> PostUser(User user)
         {
+            user.Role = UserRole.Normal;
+
             _userRepository.EmailOrUsernameAvailable(user.Email, user.Username);
 
             string salt = BCrypt.Net.BCrypt.GenerateSalt(10);
