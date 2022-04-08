@@ -7,38 +7,13 @@ using backend.Interfaces.Repositories;
 using backend.Repositories;
 using backend.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddControllers();
+AddServices(builder);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Db context
-builder.Services.AddDbContext<DataContext>(
-    options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
-    );
-
-
-// Allow CORS
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.WithOrigins("http://localhost:3000")
-        .AllowAnyHeader()
-        .AllowAnyOrigin()
-        .AllowAnyMethod();
-    });
-});
+AddCors(builder);
 
 var app = builder.Build();
-
 
 // Auto migrate model change
 using (var scope = app.Services.CreateScope())
@@ -54,8 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
@@ -63,3 +36,36 @@ app.MapControllers();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.Run();
+
+
+static void AddServices(WebApplicationBuilder builder)
+{
+    // Add services to the container.
+    builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
+    builder.Services.AddControllers();
+
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    // Db context
+    builder.Services.AddDbContext<DataContext>(
+        options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
+        );
+}
+
+static void AddCors(WebApplicationBuilder builder)
+{
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(builder =>
+        {
+            builder.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyOrigin()
+            .AllowAnyMethod();
+        });
+    });
+
+}
