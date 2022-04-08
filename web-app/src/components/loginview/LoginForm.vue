@@ -18,7 +18,6 @@
           id="input-password"
           v-model="form.password"
           required
-          trim
           type="password"
         ></b-form-input>
       </b-form-group>
@@ -49,6 +48,7 @@
 import Vue from 'vue';
 
 import { loginUser } from '@/services/user';
+
 import { saveLoginLocalStorage } from '@/utilities/localStorageHelpers';
 
 import { AxiosError } from 'axios';
@@ -86,7 +86,7 @@ export default Vue.extend({
           username: this.form.username
         });
 
-        saveLoginLocalStorage();
+        saveLoginLocalStorage(this.form.username);
         this.$router.replace({ path: '/' });
       } catch (error) {
         this.form.errors.push(

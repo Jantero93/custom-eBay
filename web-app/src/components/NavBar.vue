@@ -55,11 +55,12 @@ export default Vue.extend({
       if (this.userLogged) {
         this.$store.commit('clearLoggingInfo');
         clearLoginLocalStorage();
-        this.$router.replace({ path: '/' });
+        this.$router.replace({ path: '/' }).catch(() => null);
         return;
       }
 
-      this.$router.replace({ path: '/login' });
+      // Prevent NavigationDuplicated error with empty catch
+      this.$router.replace({ path: '/login' }).catch(() => null);
     }
   }
 });
