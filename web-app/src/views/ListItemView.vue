@@ -66,7 +66,7 @@
         <ul
           v-for="error in form.errors"
           :key="error"
-          class="text-danger font-weight-bold"
+          class="text-danger text-center font-weight-bold list-unstyled"
         >
           <li>{{ error }}</li>
         </ul>
@@ -119,6 +119,15 @@ export default Vue.extend({
     },
     validateInput() {
       this.form.errors = [];
+
+      const allFilesAreImage = this.form.files.every((file) =>
+        file.name.match(/.(jpg|jpeg|png|gif)$/i)
+      );
+
+      if (!allFilesAreImage)
+        this.form.errors.push(
+          'Allowed file extensions are jpg, jpeg, png, gif'
+        );
       if (!this.form.itemName.length) this.form.errors.push('Name required');
       if (this.form.price < 0) this.form.errors.push('Price required');
       if (this.form.files.length > 10) this.form.errors.push('Max 10 photos');

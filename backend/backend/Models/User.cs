@@ -7,7 +7,6 @@ namespace backend.Models
 {
     public class User
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
@@ -33,13 +32,11 @@ namespace backend.Models
         [StringLength(50, ErrorMessage = "Max lenght 50")]
         public string? LastName { get; set; }
 
-
         [Required]
         [MaxLength(50)]
         [Phone]
         public string? PhoneNumber { get; set; }
 
         public UserRole Role { get; set; }
-
     }
 }
