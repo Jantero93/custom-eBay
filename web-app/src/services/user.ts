@@ -9,7 +9,7 @@ export const loginUser = async (user: Partial<User>) => {
   return request.data;
 };
 
-export const registerUser = async (user: Partial<User>) => {
+export const registerUser = async (user: Partial<User>): Promise<User> => {
   const request = await axios.post(BASE_URL, user);
   return request.data;
 };

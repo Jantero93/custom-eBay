@@ -43,7 +43,8 @@ static void AddServices(WebApplicationBuilder builder)
     // Add services to the container.
     builder.Services.AddScoped<IUserService, UserService>();
     builder.Services.AddScoped<IUserRepository, UserRepository>();
-    builder.Services.AddScoped<IItemService, ItemService>(); 
+    builder.Services.AddScoped<ISalesArticleService, SalesArticleService>(); 
+    builder.Services.AddScoped<ISalesArticleRepository, SalesArticleRepository>();
     builder.Services.AddControllers();
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

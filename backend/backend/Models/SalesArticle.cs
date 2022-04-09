@@ -5,7 +5,7 @@ using backend.Helpers;
 
 namespace backend.Models
 {
-    public class Item
+    public class SalesArticle
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,6 +24,11 @@ namespace backend.Models
         [Required]
         public ItemCondition ItemCondition { get; set; }
 
-        public List<Image>? Images { get; set; }
+        public ICollection<Image>? Images { get; set; }
+
+        [Required]
+        public User? User { get; set; }
+
+        public string? Created { get; set; }
     }
 }

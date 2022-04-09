@@ -5,7 +5,7 @@
         <label>Name*</label>
         <b-form-input
           id="form-input"
-          v-model="form.itemName"
+          v-model="form.name"
           trim
           type="text"
         ></b-form-input>
@@ -24,10 +24,10 @@
       <b-form-group>
         <label>Condition*</label>
         <b-form-select v-model="form.condition" class="mb-3">
-          <b-form-select-option value="New">New</b-form-select-option>
-          <b-form-select-option value="Good">Good</b-form-select-option>
-          <b-form-select-option value="Fair">Fair</b-form-select-option>
-          <b-form-select-option value="Bad">Bad</b-form-select-option>
+          <b-form-select-option :value="0">New</b-form-select-option>
+          <b-form-select-option :value="1">Good</b-form-select-option>
+          <b-form-select-option :value="2">Fair</b-form-select-option>
+          <b-form-select-option :value="3">Bad</b-form-select-option>
         </b-form-select>
       </b-form-group>
 
@@ -77,13 +77,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { AxiosError } from 'axios';
 
-import { Condition } from '@/types/item';
+import { Condition } from '@/types/salesArticle';
+
+import { postSalesArticle } from '@/services/salesarticles';
 
 interface ComponentState {
   condition: Condition;
   description: string;
-  itemName: string;
+  name: string;
   price: number;
   files: File[];
   errors: string[];
@@ -94,9 +97,9 @@ export default Vue.extend({
   data(): { form: ComponentState } {
     return {
       form: {
-        condition: 'New',
+        condition: Condition.New,
         description: '',
-        itemName: '',
+        name: '',
         price: 0,
         files: [],
         errors: []
@@ -115,7 +118,24 @@ export default Vue.extend({
 
       if (this.form.errors.length) return;
 
-      this.$router.replace({ path: '/' });
+      try {
+        const salesArticle: FormData = new FormData();
+
+        salesArticle.append('username', this.$store.getters.username);
+        salesArticle.append('itemcondition', this.form.condition.toString());
+        salesArticle.append('name', this.form.name);
+        salesArticle.append('price', this.form.price.toString());
+        salesArticle.append('description', this.form.description);
+        this.form.files.forEach((file) => salesArticle.append(`images`, file));
+
+        await postSalesArticle(salesArticle);
+
+        this.$router.replace({ path: '/' });
+      } catch (error) {
+        this.form.errors.push(
+          (error as AxiosError).response?.data.message || 'Server error'
+        );
+      }
     },
     validateInput() {
       this.form.errors = [];
@@ -128,7 +148,7 @@ export default Vue.extend({
         this.form.errors.push(
           'Allowed file extensions are jpg, jpeg, png, gif'
         );
-      if (!this.form.itemName.length) this.form.errors.push('Name required');
+      if (!this.form.name.length) this.form.errors.push('Name required');
       if (this.form.price < 0) this.form.errors.push('Price required');
       if (this.form.files.length > 10) this.form.errors.push('Max 10 photos');
     }

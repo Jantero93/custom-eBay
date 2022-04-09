@@ -53,10 +53,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, _from, next) => {
-  // Clear local storage if user has been over hour logged
+  // Clear local storage if user has been logged over hour
   isLoggingExpired() && store.commit('clearLoggingInfo');
 
-  // Route requires auth --> Redirect to login if not logged in
+  // Route requires auth; Redirect to login if not logged in
   const pathRequiresLogin = to.matched.some((route) => route.meta.requiresAuth);
   pathRequiresLogin && !store.getters.isLogged && next({ name: 'login' });
 

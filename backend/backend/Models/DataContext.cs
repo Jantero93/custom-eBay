@@ -15,5 +15,6 @@ namespace backend.Models
         }
 
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<SalesArticle> SalesArticles { get; set; } = null!;
     }
 }

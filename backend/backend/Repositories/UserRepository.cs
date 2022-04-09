@@ -17,7 +17,9 @@ namespace backend.Repositories
 
         public async Task<User> AddUser(User user)
         {
+            user.Created = System.DateTime.UtcNow.ToString("o");
             _context.Users.Add(user);
+
             await _context.SaveChangesAsync();
             return user;
         }
@@ -66,7 +68,8 @@ namespace backend.Repositories
 
         public async Task<User> GetUserByUsername(string? username)
         {
-            User? user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
+            User? user = await _context.Users
+                .SingleOrDefaultAsync(u => u.Username == username);
 
             if (user == null)
             {

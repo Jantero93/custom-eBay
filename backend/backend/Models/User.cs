@@ -38,5 +38,7 @@ namespace backend.Models
         public string? PhoneNumber { get; set; }
 
         public UserRole Role { get; set; }
+
+        public string? Created { get; set; }
     }
 }
