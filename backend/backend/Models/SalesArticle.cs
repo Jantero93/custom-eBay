@@ -13,7 +13,7 @@ namespace backend.Models
 
         [Required]
         [MaxLength(256)]
-        public string? Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
         [MaxLength(1000)]
         public string? Description { get; set; }

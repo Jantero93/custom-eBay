@@ -78,5 +78,19 @@ namespace backend.Controllers
 
             return Ok();
         }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Append("X-Access-Token", "", new CookieOptions()
+            {
+                HttpOnly = true,
+                SameSite = SameSiteMode.Strict,
+                Secure = true,
+                Expires = DateTime.Now.AddDays(-1)
+            });
+
+            return Ok();
+        }
     }
 }

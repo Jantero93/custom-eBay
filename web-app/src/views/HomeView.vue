@@ -1,17 +1,19 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div class="d-flex flex-column align-items-center">
+    <SearchForm class="mt-5" />
+    <span class="mt-4 border-top align-self-stretch" />
+    <LatestItems class="mt-4" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+
+import SearchForm from '@/components/homeview/SearchForm.vue';
+import LatestItems from '@/components/homeview/LatestItems.vue';
 
 export default Vue.extend({
   name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+  components: { LatestItems, SearchForm }
 });
 </script>

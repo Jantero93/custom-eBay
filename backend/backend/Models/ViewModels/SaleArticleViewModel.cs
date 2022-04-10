@@ -8,7 +8,7 @@ namespace backend.Models.ViewModels
     {
         [Required]
         [MaxLength(256)]
-        public string? Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
         [MaxLength(1000)]
         public string? Description { get; set; }
@@ -21,8 +21,5 @@ namespace backend.Models.ViewModels
         public ItemCondition ItemCondition { get; set; }
 
         public List<IFormFile>? Images { get; set; }
-
-        [Required]
-        public string Username { get; set; } = String.Empty;
     }
 }

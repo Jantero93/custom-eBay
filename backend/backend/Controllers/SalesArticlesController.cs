@@ -2,6 +2,7 @@
 
 using backend.Interfaces.Services;
 using backend.Models.ViewModels;
+using backend.Models;
 
 namespace backend.Controllers
 
@@ -18,9 +19,16 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostUser([FromForm] SaleArticleViewModel item)
+        public async Task<IActionResult> PostSalesArticle([FromForm] SaleArticleViewModel item)
         {
-            await _itemService.PostSalesArticle(item);
+            User? user = HttpContext.Items["User"] as User;
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            await _itemService.PostSalesArticle(item, user);
             return Ok();
         }
 

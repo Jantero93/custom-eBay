@@ -12,7 +12,7 @@ using backend.Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220410045146_init")]
+    [Migration("20220410085541_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

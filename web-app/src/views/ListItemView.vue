@@ -121,7 +121,6 @@ export default Vue.extend({
       try {
         const salesArticle: FormData = new FormData();
 
-        salesArticle.append('username', this.$store.getters.username);
         salesArticle.append('itemcondition', this.form.condition.toString());
         salesArticle.append('name', this.form.name);
         salesArticle.append('price', this.form.price.toString());

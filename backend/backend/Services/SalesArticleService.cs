@@ -8,19 +8,14 @@ namespace backend.Services
 {
     public class SalesArticleService : ISalesArticleService
     {
-        private readonly IUserRepository _userRepository;
         private readonly ISalesArticleRepository _salesArticleRepository;
 
-
-        public SalesArticleService(ISalesArticleRepository salesArticleRepository,
-            IUserRepository userRepository)
+        public SalesArticleService(ISalesArticleRepository salesArticleRepository)
         {
-            _userRepository = userRepository;
             _salesArticleRepository = salesArticleRepository;
         }
 
-
-        public async Task<SalesArticle> PostSalesArticle(SaleArticleViewModel item)
+        public async Task<SalesArticle> PostSalesArticle(SaleArticleViewModel item, User user)
         {
             var salesArticle = new SalesArticle()
             {
@@ -28,7 +23,7 @@ namespace backend.Services
                 Description = item.Description,
                 ItemCondition = item.ItemCondition,
                 Price = item.Price,
-                User = await _userRepository.GetUserByUsername(item.Username),
+                User = user,
                 Images = new List<Image>()
             };
 

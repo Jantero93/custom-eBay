@@ -980,12 +980,12 @@ export const cities = [
     population_proper: '11769'
   },
   {
-    city: 'Mariehamn',
+    city: 'Marianhamina',
     lat: '60.0986',
     lng: '19.9444',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'admin',
     population: '11461',
     population_proper: '11461'
@@ -1975,7 +1975,7 @@ export const cities = [
     lng: '19.9500',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '4648',
     population_proper: '4648'
@@ -2844,7 +2844,7 @@ export const cities = [
     lng: '20.1000',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '1991',
     population_proper: '1991'
@@ -3020,7 +3020,7 @@ export const cities = [
     lng: '19.7403',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '1537',
     population_proper: '1537'
@@ -3196,7 +3196,7 @@ export const cities = [
     lng: '19.5500',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '935',
     population_proper: '935'
@@ -3240,7 +3240,7 @@ export const cities = [
     lng: '21.0453',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '515',
     population_proper: '515'
@@ -3251,7 +3251,7 @@ export const cities = [
     lng: '19.8500',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '495',
     population_proper: '495'
@@ -3262,7 +3262,7 @@ export const cities = [
     lng: '20.3750',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '441',
     population_proper: '441'
@@ -3273,7 +3273,7 @@ export const cities = [
     lng: '20.2583',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '398',
     population_proper: '398'
@@ -3284,7 +3284,7 @@ export const cities = [
     lng: '20.7783',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '317',
     population_proper: '317'
@@ -3295,7 +3295,7 @@ export const cities = [
     lng: '20.6667',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '92',
     population_proper: '92'
@@ -3350,7 +3350,7 @@ export const cities = [
     lng: '19.9881',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '',
     population_proper: ''
@@ -3394,7 +3394,7 @@ export const cities = [
     lng: '19.9862',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '',
     population_proper: ''
@@ -3482,7 +3482,7 @@ export const cities = [
     lng: '20.1342',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '',
     population_proper: ''
@@ -3515,7 +3515,7 @@ export const cities = [
     lng: '20.4333',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '',
     population_proper: ''
@@ -3537,7 +3537,7 @@ export const cities = [
     lng: '20.9000',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '',
     population_proper: ''
@@ -3570,7 +3570,7 @@ export const cities = [
     lng: '21.0833',
     country: 'Finland',
     iso2: 'FI',
-    admin_name: 'Åland',
+    admin_name: 'Ahvenanmaa',
     capital: 'minor',
     population: '',
     population_proper: ''

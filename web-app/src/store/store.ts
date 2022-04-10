@@ -17,7 +17,19 @@ export default new Vuex.Store<UserInfo>({
     username: (state): string => state.username,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cities: (): any[] =>
-      cities.sort((a, b) => a.city.localeCompare(b.city, 'sv'))
+      cities.sort((a, b) => a.city.localeCompare(b.city, 'sv')),
+    // Get unique admin names for cities
+    cityAdminNames: (): string[] =>
+      [...new Set(cities.map((city) => city.admin_name))].sort((a, b) =>
+        a.localeCompare(b, 'sv')
+      ),
+    getAdminByCity:
+      () =>
+      (city: string): string =>
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        cities.find(
+          (location) => location.city.toLowerCase() === city.toLowerCase()
+        )!.admin_name
   },
   mutations: {
     setLoggingInfo(state, loggedInfo: UserInfo) {

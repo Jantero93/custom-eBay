@@ -7,10 +7,10 @@ namespace backend.Models.ViewModels
        
         [Required]
         [StringLength(30, ErrorMessage = "Username must contain 3 - 30 characters", MinimumLength = 3)]
-        public string? Username { get; set; }
+        public string Username { get; set; } = String.Empty;
 
         [Required]
         [MaxLength (255)]
-        public string? Password { get; set; }
+        public string Password { get; set; } = String.Empty;
     }
 }
