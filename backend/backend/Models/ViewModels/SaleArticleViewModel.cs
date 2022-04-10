@@ -23,6 +23,6 @@ namespace backend.Models.ViewModels
         public List<IFormFile>? Images { get; set; }
 
         [Required]
-        public string? Username { get; set; }
+        public string Username { get; set; } = String.Empty;
     }
 }

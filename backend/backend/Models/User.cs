@@ -13,16 +13,20 @@ namespace backend.Models
 
         [Required]
         [StringLength(30, ErrorMessage = "Username must contain 3 - 30 characters", MinimumLength = 3)]
-        public string? Username { get; set; }
+        public string Username { get; set; } = String.Empty;
 
         [Required]
         [MaxLength(255)]
         public string? Password { get; set; }
 
         [Required]
+        [MaxLength(256)]
+        public string? City { get; set; }
+
+        [Required]
         [MaxLength(255)]
         [EmailAddress(ErrorMessage = "Invalid Email")]
-        public string? Email { get; set; }
+        public string Email { get; set; } = String.Empty;
 
         [Required]
         [StringLength(50, ErrorMessage = "Max lenght 50")]
@@ -36,7 +40,6 @@ namespace backend.Models
         [MaxLength(50)]
         [Phone]
         public string? PhoneNumber { get; set; }
-
         public UserRole Role { get; set; }
 
         public string? Created { get; set; }

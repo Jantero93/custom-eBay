@@ -22,7 +22,7 @@
             }
             catch (Exception error)
             {
-                _logger.LogError(error.ToString());
+                _logger.LogError(error.Message);
 
                 var response = context.Response;
                 response.ContentType = "application/json";

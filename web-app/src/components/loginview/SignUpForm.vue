@@ -31,6 +31,18 @@
         </b-form-group>
 
         <b-form-group>
+          <label>City*</label>
+          <b-form-select v-model="form.city" required>
+            <b-form-select-option
+              v-for="location in finlandCities"
+              :key="location.city"
+              :value="location.city"
+              >{{ location.city }}</b-form-select-option
+            >
+          </b-form-select>
+        </b-form-group>
+
+        <b-form-group>
           <label>Phone number</label>
           <b-form-input
             id="input-phonenumber"
@@ -106,15 +118,16 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import { registerUser } from '@/services/user';
-
 import { AxiosError } from 'axios';
+
+import { registerUser } from '@/services/user';
 
 interface ComponentState {
   firstName: string;
   lastName: string;
   phone: string;
   username: string;
+  city?: string;
   email: string;
   password: string;
   passwordAgain: string;
@@ -130,12 +143,18 @@ export default Vue.extend({
         lastName: '',
         phone: '',
         username: '',
+        city: '',
         email: '',
         password: '',
         passwordAgain: '',
         errors: []
       }
     };
+  },
+  computed: {
+    finlandCities(): unknown[] {
+      return this.$store.getters.cities;
+    }
   },
   methods: {
     clearInput() {
@@ -145,6 +164,7 @@ export default Vue.extend({
       this.form.username = '';
       this.form.email = '';
       this.form.password = '';
+      this.form.city = '';
       this.form.passwordAgain = '';
     },
     async submitClicked(e: Event) {
@@ -160,7 +180,8 @@ export default Vue.extend({
           firstName: this.form.firstName,
           lastName: this.form.lastName,
           email: this.form.email,
-          phoneNumber: this.form.phone
+          phoneNumber: this.form.phone,
+          city: this.form.city
         });
 
         this.$router.replace({ path: '/login' });
@@ -187,6 +208,8 @@ export default Vue.extend({
 
       if (this.form.password.length < 6)
         this.form.errors.push('Password must be at least 6 characters');
+
+      if (!this.form.city) this.form.errors.push('Select city');
     }
   }
 });

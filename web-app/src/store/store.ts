@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 
 import { UserInfo } from '@/types/vuex';
 
+import { cities } from '@/assets/finlandCities';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store<UserInfo>({
@@ -12,7 +14,10 @@ export default new Vuex.Store<UserInfo>({
   },
   getters: {
     isLogged: (state): boolean => state.loggedIn,
-    username: (state): string => state.username
+    username: (state): string => state.username,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cities: (): any[] =>
+      cities.sort((a, b) => a.city.localeCompare(b.city, 'sv'))
   },
   mutations: {
     setLoggingInfo(state, loggedInfo: UserInfo) {

@@ -34,14 +34,14 @@ namespace backend.Repositories
         /// Method throws error if username or email is taken.
         /// </summary>
         /// <exception cref="AppException" />
-        public void EmailOrUsernameAvailable(string? email, string? username)
+        public void EmailOrUsernameAvailable(string email, string username)
         {
-            if (_context.Users.Any(user => user.Username == username))
+            if (_context.Users.Any(user => user.Username.ToLower() == username.ToLower()))
             {
                 throw new AppException("Username is already taken", StatusCodes.Status409Conflict);
             }
 
-            if (_context.Users.Any(user => user.Email == email))
+            if (_context.Users.Any(user => user.Email.ToLower() == email.ToLower()))
             {
                 throw new AppException("Email is already taken", StatusCodes.Status409Conflict);
             }
@@ -66,10 +66,10 @@ namespace backend.Repositories
             return user;
         }
 
-        public async Task<User> GetUserByUsername(string? username)
+        public async Task<User> GetUserByUsername(string username)
         {
             User? user = await _context.Users
-                .SingleOrDefaultAsync(u => u.Username == username);
+                .SingleOrDefaultAsync(u => u.Username.ToLower() == username.ToLower());
 
             if (user == null)
             {
