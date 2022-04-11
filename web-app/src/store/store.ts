@@ -32,11 +32,11 @@ export default new Vuex.Store<AppState>({
       )
   },
   mutations: {
-    setLoggingInfo(state, loggedInfo: AppState) {
+    setLoggingInfo(state, loggedInfo: AppState): void {
       state.loggedIn = loggedInfo.loggedIn;
       state.username = loggedInfo.username;
     },
-    clearLoggingInfo(state) {
+    clearLoggingInfo(state): void {
       state.loggedIn = false;
       state.username = '';
     },
@@ -45,7 +45,7 @@ export default new Vuex.Store<AppState>({
     }
   },
   actions: {
-    async setLocations(state) {
+    async setLocations(state): Promise<void> {
       const locations = (await getLocations()) || [];
       state.commit('setCities', locations);
     }

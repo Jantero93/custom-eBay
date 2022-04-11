@@ -1,4 +1,6 @@
-﻿using backend.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+
+using backend.Interfaces.Repositories;
 using backend.Models;
 
 namespace backend.Repositories
@@ -16,8 +18,17 @@ namespace backend.Repositories
 
             _context.SalesArticles.Add(item);
             await _context.SaveChangesAsync();
-            
+
             return item;
+        }
+
+        public async Task<List<SalesArticle>> GetAllSalesArticles()
+        {
+            return await _context.SalesArticles
+                .Include(s => s.User)
+                .Include(s => s.Location)
+                .Include(s => s.Images)
+                .ToListAsync();
         }
     }
 }

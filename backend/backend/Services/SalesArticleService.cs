@@ -17,6 +17,11 @@ namespace backend.Services
             _salesArticleRepository = salesArticleRepository;
         }
 
+        public async Task<List<SalesArticle>> GetAll()
+        {
+            return await _salesArticleRepository.GetAllSalesArticles();
+        }
+
         public async Task<SalesArticle> PostSalesArticle(SaleArticleViewModel item, User user)
         {
             var salesArticle = new SalesArticle()
@@ -42,5 +47,7 @@ namespace backend.Services
 
             return await _salesArticleRepository.AddSalesArticle(salesArticle);
         }
+
+
     }
 }

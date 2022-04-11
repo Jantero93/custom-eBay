@@ -11,11 +11,11 @@ namespace backend.Controllers
     [ApiController]
     public class SalesArticlesController : ControllerBase
     {
-        private readonly ISalesArticleService _itemService;
+        private readonly ISalesArticleService _salesArticleService;
 
         public SalesArticlesController(ISalesArticleService itemService)
         {
-            _itemService = itemService;
+            _salesArticleService = itemService;
         }
 
         [HttpPost]
@@ -28,9 +28,14 @@ namespace backend.Controllers
                 return Unauthorized();
             }
 
-            await _itemService.PostSalesArticle(item, user);
+            await _salesArticleService.PostSalesArticle(item, user);
             return Ok();
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SalesArticle>>> GetSalesArticles()
+        {
+            return await _salesArticleService.GetAll();
+        }
     }
 }

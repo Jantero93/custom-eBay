@@ -1,3 +1,6 @@
+import { User } from '@/types/user';
+import { Location } from '@/types/location';
+
 export enum Condition {
   New,
   Good,
@@ -17,5 +20,7 @@ export type SalesArticle = {
   name: string;
   description: string;
   price: number;
-  images: File[];
+  images: Image[];
+  User: User;
+  Location: Location;
 };
