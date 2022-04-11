@@ -32,7 +32,7 @@ namespace backend.Middlewares
                 }
                 catch
                 {
-                  
+                    // No need to handle expection if user is not found
                 }
             }
 

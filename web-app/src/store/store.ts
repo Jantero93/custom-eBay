@@ -1,46 +1,54 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { UserInfo } from '@/types/vuex';
+import { Location } from '@/types/location';
 
-import { cities } from '@/assets/finlandCities';
+import { getLocations } from '@/services/locations';
+export interface AppState {
+  loggedIn: boolean;
+  username: string;
+  locations: Location[];
+}
 
 Vue.use(Vuex);
 
-export default new Vuex.Store<UserInfo>({
+export default new Vuex.Store<AppState>({
   state: {
     loggedIn: false,
-    username: ''
+    username: '',
+    locations: []
   },
   getters: {
     isLogged: (state): boolean => state.loggedIn,
     username: (state): string => state.username,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    cities: (): string[] =>
-      cities.map((city) => city.city).sort((a, b) => a.localeCompare(b, 'sv')),
+    cities: (state): string[] =>
+      state.locations
+        .map((l) => l.city)
+        .sort((a, b) => a.localeCompare(b, 'sv')),
     // Get unique admin names for cities
-    cityAdminNames: (): string[] =>
-      [...new Set(cities.map((city) => city.admin_name))].sort((a, b) =>
+    cityAdminNames: (state): string[] =>
+      [...new Set(state.locations.map((l) => l.admin_Name))].sort((a, b) =>
         a.localeCompare(b, 'sv')
-      ),
-    getAdminByCity:
-      () =>
-      (city: string): string =>
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        cities.find(
-          (location) => location.city.toLowerCase() === city.toLowerCase()
-        )!.admin_name
+      )
   },
   mutations: {
-    setLoggingInfo(state, loggedInfo: UserInfo) {
+    setLoggingInfo(state, loggedInfo: AppState) {
       state.loggedIn = loggedInfo.loggedIn;
       state.username = loggedInfo.username;
     },
     clearLoggingInfo(state) {
       state.loggedIn = false;
       state.username = '';
+    },
+    setCities(state, locations: Location[]) {
+      state.locations = locations;
     }
   },
-  actions: {},
+  actions: {
+    async setLocations(state) {
+      const locations = (await getLocations()) || [];
+      state.commit('setCities', locations);
+    }
+  },
   modules: {}
 });
