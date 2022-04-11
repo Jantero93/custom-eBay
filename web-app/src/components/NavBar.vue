@@ -5,14 +5,9 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
-          <b-link to="/">Home</b-link>
-        </b-navbar-nav>
-
-        <b-navbar-nav class="mx-auto search-controls">
-          <b-form-input class="ml-5" placeholder="Search" />
-          <b-button class="ml-2" size="md" variant="outline-info" type="submit"
-            >Search</b-button
-          >
+          <router-link to="/"
+            ><img src="@/assets/ebay-image.png" :style="{ width: '125px' }"
+          /></router-link>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
@@ -21,7 +16,7 @@
             class="d-none d-lg-inline mr-1 text-info"
             >Logged in</b-nav-text
           >
-          <b-nav-item-dropdown id="my-ebay" text="my eBay">
+          <b-nav-item-dropdown id="my-ebay" text="my eBay" boundary="viewport">
             <b-dropdown-item @click="logClicked">{{
               userLogged ? 'Log out' : 'Login'
             }}</b-dropdown-item>
@@ -96,15 +91,8 @@ nav a.router-link-exact-active,
 @media screen and (max-width: 575px) {
   a,
   #my-ebay {
-    margin-top: 1em;
-    margin-bottom: 1em;
     font-size: 2em;
     align-self: center;
-  }
-
-  .search-controls {
-    display: flex;
-    flex-direction: row;
   }
 }
 </style>

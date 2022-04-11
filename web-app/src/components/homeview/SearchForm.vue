@@ -17,7 +17,10 @@
         >
       </b-form-select>
 
-      <b-button class="mt-2 mt-sm-0 ml-0 ml-sm-2" variant="success"
+      <b-button
+        class="mt-2 mt-sm-0 ml-0 ml-sm-2"
+        variant="success"
+        @click="searchClicked"
         >Search</b-button
       >
     </b-form>
@@ -45,6 +48,14 @@ export default Vue.extend({
   computed: {
     adminNames(): string[] {
       return this.$store.getters.cityAdminNames;
+    }
+  },
+  methods: {
+    searchClicked() {
+      this.$emit('search-submit', {
+        searchTerms: this.state.searchTerms,
+        location: this.state.adminName
+      });
     }
   }
 });

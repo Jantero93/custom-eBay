@@ -20,10 +20,6 @@ namespace backend.Models
         public string? Password { get; set; }
 
         [Required]
-        [MaxLength(256)]
-        public string? City { get; set; }
-
-        [Required]
         [MaxLength(255)]
         [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; } = String.Empty;
@@ -40,6 +36,9 @@ namespace backend.Models
         [MaxLength(50)]
         [Phone]
         public string? PhoneNumber { get; set; }
+
+        public Location? Location { get; set; }
+
         public UserRole Role { get; set; }
 
         public string? Created { get; set; }

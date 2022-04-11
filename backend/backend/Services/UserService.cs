@@ -15,11 +15,15 @@ namespace backend.Services
     public class UserService : IUserService
     {
         private readonly IConfiguration _config;
+        private readonly ILocationRepository _locationRepository;
         private readonly IUserRepository _userRepository;
 
-        public UserService(IConfiguration config, IUserRepository userRepository)
+        public UserService(IConfiguration config,
+            IUserRepository userRepository,
+            ILocationRepository locationRepository)
         {
             _config = config;
+            _locationRepository = locationRepository;
             _userRepository = userRepository;
         }
 
@@ -75,16 +79,24 @@ namespace backend.Services
             return GenerateToken(DbUser);
         }
 
-        public async Task<UserDto> PostUser(User user)
+        public async Task<UserDto> PostUser(UserViewModel user)
         {
-            user.Role = UserRole.Normal;
-
             _userRepository.EmailOrUsernameAvailable(user.Email, user.Username);
 
             string salt = BCrypt.Net.BCrypt.GenerateSalt(10);
-            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password, salt);
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password, salt);
 
-            User savedUser = await _userRepository.AddUser(user);
+            User savedUser = await _userRepository.AddUser(new User()
+            {
+                Username = user.Username,
+                Password = hashedPassword,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Location = await _locationRepository.GetLocationByCity(user.City),
+                Role = UserRole.Normal,
+                PhoneNumber = user.PhoneNumber,
+            });
 
             return new UserDto()
             {

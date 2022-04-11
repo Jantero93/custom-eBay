@@ -2,7 +2,6 @@
   <div class="d-flex flex-column align-items-center">
     <SearchForm class="mt-5" />
     <span class="mt-4 border-top align-self-stretch" />
-    <LatestItems class="mt-4" />
   </div>
 </template>
 
@@ -10,10 +9,9 @@
 import Vue from 'vue';
 
 import SearchForm from '@/components/homeview/SearchForm.vue';
-import LatestItems from '@/components/homeview/LatestItems.vue';
 
 export default Vue.extend({
   name: 'HomeView',
-  components: { LatestItems, SearchForm }
+  components: { SearchForm }
 });
 </script>

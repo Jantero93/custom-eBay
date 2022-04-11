@@ -10,7 +10,7 @@ namespace backend.Interfaces.Services
         Task<UserDto> GetUser(long id);
         Task<List<UserDto>> GetUsers();
         Task<string> Login(UserViewModel user);
-        Task<UserDto> PostUser(User user);
+        Task<UserDto> PostUser(UserViewModel user);
         Task PutUser(User user);
     }
 }

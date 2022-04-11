@@ -24,5 +24,7 @@ namespace backend.Models.DataTransferObjects
 
         [MaxLength(255)]
         public string? PhoneNumber { get; set; }
+
+        public Location? Location { get; set; }
     }
 }

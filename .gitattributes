@@ -1,2 +1,3 @@
 web-app/src/assets/* linguist-vendored
 backend/backend/Migrations/* linguist-vendored
+backend/backend/assets/* linguist-vendored

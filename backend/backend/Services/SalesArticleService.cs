@@ -8,10 +8,12 @@ namespace backend.Services
 {
     public class SalesArticleService : ISalesArticleService
     {
+        private readonly ILocationRepository _locationRepository;
         private readonly ISalesArticleRepository _salesArticleRepository;
 
-        public SalesArticleService(ISalesArticleRepository salesArticleRepository)
+        public SalesArticleService(ILocationRepository locationRepository, ISalesArticleRepository salesArticleRepository)
         {
+            _locationRepository = locationRepository;
             _salesArticleRepository = salesArticleRepository;
         }
 

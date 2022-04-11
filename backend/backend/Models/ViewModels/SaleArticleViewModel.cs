@@ -20,6 +20,9 @@ namespace backend.Models.ViewModels
         [Required]
         public ItemCondition ItemCondition { get; set; }
 
+        [Required]
+        public string City { get; set; } = String.Empty;
+
         public List<IFormFile>? Images { get; set; }
     }
 }
