@@ -12,7 +12,7 @@ using backend.Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220411065238_init")]
+    [Migration("20220411081021_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,7 +146,7 @@ namespace backend.Migrations
                         {
                             Id = 6L,
                             Admin_Name = "Keski-Suomi",
-                            City = "Jyv�skyl�",
+                            City = "Jyväskylä",
                             Country = "Finland",
                             Lat = "62.2333",
                             Lng = "25.7333",
@@ -165,7 +165,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 8L,
-                            Admin_Name = "P�ij�t-H�me",
+                            Admin_Name = "Päijät-Häme",
                             City = "Lahti",
                             Country = "Finland",
                             Lat = "60.9804",
@@ -205,7 +205,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 12L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Lappeenranta",
                             Country = "Finland",
                             Lat = "61.0583",
@@ -215,8 +215,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 13L,
-                            Admin_Name = "Kanta-H�me",
-                            City = "H�meenlinna",
+                            Admin_Name = "Kanta-Häme",
+                            City = "Hämeenlinna",
                             Country = "Finland",
                             Lat = "61.0000",
                             Lng = "24.4414",
@@ -245,8 +245,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 16L,
-                            Admin_Name = "Etel�-Pohjanmaa",
-                            City = "Sein�joki",
+                            Admin_Name = "Etelä-Pohjanmaa",
+                            City = "Seinäjoki",
                             Country = "Finland",
                             Lat = "62.7903",
                             Lng = "22.8403",
@@ -255,7 +255,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 17L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Mikkeli",
                             Country = "Finland",
                             Lat = "61.6875",
@@ -316,7 +316,7 @@ namespace backend.Migrations
                         {
                             Id = 23L,
                             Admin_Name = "Uusimaa",
-                            City = "Hyvink��",
+                            City = "Hyvinkää",
                             Country = "Finland",
                             Lat = "60.6306",
                             Lng = "24.8597",
@@ -326,7 +326,7 @@ namespace backend.Migrations
                         {
                             Id = 24L,
                             Admin_Name = "Uusimaa",
-                            City = "Nurmij�rvi",
+                            City = "Nurmijärvi",
                             Country = "Finland",
                             Lat = "60.4667",
                             Lng = "24.8083",
@@ -336,7 +336,7 @@ namespace backend.Migrations
                         {
                             Id = 25L,
                             Admin_Name = "Uusimaa",
-                            City = "J�rvenp��",
+                            City = "Järvenpää",
                             Country = "Finland",
                             Lat = "60.4722",
                             Lng = "25.0889",
@@ -386,7 +386,7 @@ namespace backend.Migrations
                         {
                             Id = 30L,
                             Admin_Name = "Keski-Suomi",
-                            City = "Jyv�skyl�n Maalaiskunta",
+                            City = "Jyväskylän Maalaiskunta",
                             Country = "Finland",
                             Lat = "62.2889",
                             Lng = "25.7417",
@@ -395,7 +395,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 31L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Savonlinna",
                             Country = "Finland",
                             Lat = "61.8667",
@@ -426,7 +426,7 @@ namespace backend.Migrations
                         {
                             Id = 34L,
                             Admin_Name = "Pirkanmaa",
-                            City = "Yl�j�rvi",
+                            City = "Ylöjärvi",
                             Country = "Finland",
                             Lat = "61.5500",
                             Lng = "23.5833",
@@ -455,8 +455,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 37L,
-                            Admin_Name = "Kanta-H�me",
-                            City = "Riihim�ki",
+                            Admin_Name = "Kanta-Häme",
+                            City = "Riihimäki",
                             Country = "Finland",
                             Lat = "60.7333",
                             Lng = "24.7667",
@@ -485,7 +485,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 40L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Imatra",
                             Country = "Finland",
                             Lat = "61.1931",
@@ -525,7 +525,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 44L,
-                            Admin_Name = "P�ij�t-H�me",
+                            Admin_Name = "Päijät-Häme",
                             City = "Hollola",
                             Country = "Finland",
                             Lat = "60.9886",
@@ -536,7 +536,7 @@ namespace backend.Migrations
                         {
                             Id = 45L,
                             Admin_Name = "Pirkanmaa",
-                            City = "Lemp��l�",
+                            City = "Lempäälä",
                             Country = "Finland",
                             Lat = "61.3139",
                             Lng = "23.7528",
@@ -566,7 +566,7 @@ namespace backend.Migrations
                         {
                             Id = 48L,
                             Admin_Name = "Pohjois-Savo",
-                            City = "Siilinj�rvi",
+                            City = "Siilinjärvi",
                             Country = "Finland",
                             Lat = "63.0750",
                             Lng = "27.6600",
@@ -585,7 +585,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 50L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Kurikka",
                             Country = "Finland",
                             Lat = "62.6167",
@@ -596,7 +596,7 @@ namespace backend.Migrations
                         {
                             Id = 51L,
                             Admin_Name = "Keski-Suomi",
-                            City = "J�ms�",
+                            City = "Jämsä",
                             Country = "Finland",
                             Lat = "61.8639",
                             Lng = "25.1903",
@@ -626,7 +626,7 @@ namespace backend.Migrations
                         {
                             Id = 54L,
                             Admin_Name = "Uusimaa",
-                            City = "M�nts�l�",
+                            City = "Mäntsälä",
                             Country = "Finland",
                             Lat = "60.6331",
                             Lng = "25.3167",
@@ -636,7 +636,7 @@ namespace backend.Migrations
                         {
                             Id = 55L,
                             Admin_Name = "Keski-Suomi",
-                            City = "��nekoski",
+                            City = "Äänekoski",
                             Country = "Finland",
                             Lat = "62.6042",
                             Lng = "25.7264",
@@ -655,7 +655,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 57L,
-                            Admin_Name = "P�ij�t-H�me",
+                            Admin_Name = "Päijät-Häme",
                             City = "Heinola",
                             Country = "Finland",
                             Lat = "61.2028",
@@ -735,8 +735,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 65L,
-                            Admin_Name = "Etel�-Savo",
-                            City = "Pieks�m�ki",
+                            Admin_Name = "Etelä-Savo",
+                            City = "Pieksämäki",
                             Country = "Finland",
                             Lat = "62.3000",
                             Lng = "27.1583",
@@ -745,7 +745,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 66L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Forssa",
                             Country = "Finland",
                             Lat = "60.8167",
@@ -775,7 +775,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 69L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Kauhava",
                             Country = "Finland",
                             Lat = "63.1014",
@@ -795,7 +795,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 71L,
-                            Admin_Name = "P�ij�t-H�me",
+                            Admin_Name = "Päijät-Häme",
                             City = "Orimattila",
                             Country = "Finland",
                             Lat = "60.8042",
@@ -855,7 +855,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 77L,
-                            Admin_Name = "P�ij�t-H�me",
+                            Admin_Name = "Päijät-Häme",
                             City = "Nastola",
                             Country = "Finland",
                             Lat = "60.9477",
@@ -875,7 +875,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 79L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Lapua",
                             Country = "Finland",
                             Lat = "62.9708",
@@ -885,7 +885,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 80L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Kauhajoki",
                             Country = "Finland",
                             Lat = "62.4319",
@@ -915,7 +915,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 83L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Ilmajoki",
                             Country = "Finland",
                             Lat = "62.7333",
@@ -945,7 +945,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 86L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Alavus",
                             Country = "Finland",
                             Lat = "62.5861",
@@ -966,7 +966,7 @@ namespace backend.Migrations
                         {
                             Id = 88L,
                             Admin_Name = "Satakunta",
-                            City = "Kankaanp��",
+                            City = "Kankaanpää",
                             Country = "Finland",
                             Lat = "61.8042",
                             Lng = "22.3944",
@@ -975,7 +975,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 89L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Mariehamn",
                             Country = "Finland",
                             Lat = "60.0986",
@@ -1006,7 +1006,7 @@ namespace backend.Migrations
                         {
                             Id = 92L,
                             Admin_Name = "Pirkanmaa",
-                            City = "H�meenkyr�",
+                            City = "Hämeenkyrö",
                             Country = "Finland",
                             Lat = "61.6333",
                             Lng = "23.2000",
@@ -1055,8 +1055,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 97L,
-                            Admin_Name = "Etel�-Pohjanmaa",
-                            City = "Alaj�rvi",
+                            Admin_Name = "Etelä-Pohjanmaa",
+                            City = "Alajärvi",
                             Country = "Finland",
                             Lat = "63.0000",
                             Lng = "23.8167",
@@ -1086,7 +1086,7 @@ namespace backend.Migrations
                         {
                             Id = 100L,
                             Admin_Name = "Pohjois-Savo",
-                            City = "Lepp�virta",
+                            City = "Leppävirta",
                             Country = "Finland",
                             Lat = "62.4917",
                             Lng = "27.7875",
@@ -1106,7 +1106,7 @@ namespace backend.Migrations
                         {
                             Id = 102L,
                             Admin_Name = "Keski-Suomi",
-                            City = "Saarij�rvi",
+                            City = "Saarijärvi",
                             Country = "Finland",
                             Lat = "62.7056",
                             Lng = "25.2569",
@@ -1156,7 +1156,7 @@ namespace backend.Migrations
                         {
                             Id = 107L,
                             Admin_Name = "Pohjanmaa",
-                            City = "N�rpes",
+                            City = "Närpes",
                             Country = "Finland",
                             Lat = "62.4736",
                             Lng = "21.3375",
@@ -1216,7 +1216,7 @@ namespace backend.Migrations
                         {
                             Id = 113L,
                             Admin_Name = "Lappi",
-                            City = "Sodankyl�",
+                            City = "Sodankylä",
                             Country = "Finland",
                             Lat = "67.4149",
                             Lng = "26.5907",
@@ -1266,7 +1266,7 @@ namespace backend.Migrations
                         {
                             Id = 118L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Pudasj�rvi",
+                            City = "Pudasjärvi",
                             Country = "Finland",
                             Lat = "65.3583",
                             Lng = "27.0000",
@@ -1275,7 +1275,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 119L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Loppi",
                             Country = "Finland",
                             Lat = "60.7181",
@@ -1305,8 +1305,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 122L,
-                            Admin_Name = "Etel�-Pohjanmaa",
-                            City = "Jalasj�rvi",
+                            Admin_Name = "Etelä-Pohjanmaa",
+                            City = "Jalasjärvi",
                             Country = "Finland",
                             Lat = "62.4917",
                             Lng = "22.7667",
@@ -1316,7 +1316,7 @@ namespace backend.Migrations
                         {
                             Id = 123L,
                             Admin_Name = "Varsinais-Suomi",
-                            City = "Myn�m�ki",
+                            City = "Mynämäki",
                             Country = "Finland",
                             Lat = "60.6833",
                             Lng = "21.9833",
@@ -1326,7 +1326,7 @@ namespace backend.Migrations
                         {
                             Id = 124L,
                             Admin_Name = "Lappi",
-                            City = "Kemij�rvi",
+                            City = "Kemijärvi",
                             Country = "Finland",
                             Lat = "66.7150",
                             Lng = "27.4306",
@@ -1346,7 +1346,7 @@ namespace backend.Migrations
                         {
                             Id = 126L,
                             Admin_Name = "Satakunta",
-                            City = "Kokem�ki",
+                            City = "Kokemäki",
                             Country = "Finland",
                             Lat = "61.2556",
                             Lng = "22.3486",
@@ -1366,7 +1366,7 @@ namespace backend.Migrations
                         {
                             Id = 128L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Haapaj�rvi",
+                            City = "Haapajärvi",
                             Country = "Finland",
                             Lat = "63.7486",
                             Lng = "25.3181",
@@ -1426,7 +1426,7 @@ namespace backend.Migrations
                         {
                             Id = 134L,
                             Admin_Name = "Pirkanmaa",
-                            City = "M�ntt�",
+                            City = "Mänttä",
                             Country = "Finland",
                             Lat = "62.0292",
                             Lng = "24.6236",
@@ -1436,7 +1436,7 @@ namespace backend.Migrations
                         {
                             Id = 135L,
                             Admin_Name = "Satakunta",
-                            City = "S�kyl�",
+                            City = "Säkylä",
                             Country = "Finland",
                             Lat = "61.0500",
                             Lng = "22.3500",
@@ -1466,7 +1466,7 @@ namespace backend.Migrations
                         {
                             Id = 138L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Tyrn�v�",
+                            City = "Tyrnävä",
                             Country = "Finland",
                             Lat = "64.7500",
                             Lng = "25.6500",
@@ -1496,7 +1496,7 @@ namespace backend.Migrations
                         {
                             Id = 141L,
                             Admin_Name = "Pohjanmaa",
-                            City = "V�r�",
+                            City = "Vörå",
                             Country = "Finland",
                             Lat = "63.1333",
                             Lng = "22.2500",
@@ -1516,7 +1516,7 @@ namespace backend.Migrations
                         {
                             Id = 143L,
                             Admin_Name = "Pirkanmaa",
-                            City = "P�lk�ne",
+                            City = "Pälkäne",
                             Country = "Finland",
                             Lat = "61.3389",
                             Lng = "24.2681",
@@ -1535,7 +1535,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 145L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Juva",
                             Country = "Finland",
                             Lat = "61.8972",
@@ -1546,7 +1546,7 @@ namespace backend.Migrations
                         {
                             Id = 146L,
                             Admin_Name = "Lappi",
-                            City = "Kittil�",
+                            City = "Kittilä",
                             Country = "Finland",
                             Lat = "67.6531",
                             Lng = "24.9114",
@@ -1555,7 +1555,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 147L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Tammela",
                             Country = "Finland",
                             Lat = "60.8000",
@@ -1575,8 +1575,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 149L,
-                            Admin_Name = "Etel�-Savo",
-                            City = "M�ntyharju",
+                            Admin_Name = "Etelä-Savo",
+                            City = "Mäntyharju",
                             Country = "Finland",
                             Lat = "61.4181",
                             Lng = "26.8792",
@@ -1595,8 +1595,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 151L,
-                            Admin_Name = "Etel�-Pohjanmaa",
-                            City = "�ht�ri",
+                            Admin_Name = "Etelä-Pohjanmaa",
+                            City = "Ähtäri",
                             Country = "Finland",
                             Lat = "62.5500",
                             Lng = "24.0694",
@@ -1625,7 +1625,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 154L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Kangasniemi",
                             Country = "Finland",
                             Lat = "61.9900",
@@ -1646,7 +1646,7 @@ namespace backend.Migrations
                         {
                             Id = 156L,
                             Admin_Name = "Uusimaa",
-                            City = "Ing�",
+                            City = "Ingå",
                             Country = "Finland",
                             Lat = "60.0458",
                             Lng = "24.0056",
@@ -1665,7 +1665,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 158L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Teuva",
                             Country = "Finland",
                             Lat = "62.4861",
@@ -1675,7 +1675,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 159L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Jokioinen",
                             Country = "Finland",
                             Lat = "60.8042",
@@ -1695,7 +1695,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 161L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Ruokolahti",
                             Country = "Finland",
                             Lat = "61.2917",
@@ -1715,7 +1715,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 163L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Parikkala",
                             Country = "Finland",
                             Lat = "61.5500",
@@ -1755,7 +1755,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 167L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Joroinen",
                             Country = "Finland",
                             Lat = "62.1792",
@@ -1805,7 +1805,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 172L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Taipalsaari",
                             Country = "Finland",
                             Lat = "61.1597",
@@ -1826,7 +1826,7 @@ namespace backend.Migrations
                         {
                             Id = 174L,
                             Admin_Name = "Pohjanmaa",
-                            City = "Isokyr�",
+                            City = "Isokyrö",
                             Country = "Finland",
                             Lat = "63.0000",
                             Lng = "22.3167",
@@ -1846,7 +1846,7 @@ namespace backend.Migrations
                         {
                             Id = 176L,
                             Admin_Name = "Pohjois-Karjala",
-                            City = "Tohmaj�rvi",
+                            City = "Tohmajärvi",
                             Country = "Finland",
                             Lat = "62.2264",
                             Lng = "30.3319",
@@ -1875,7 +1875,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 179L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Jomala",
                             Country = "Finland",
                             Lat = "60.1500",
@@ -1896,7 +1896,7 @@ namespace backend.Migrations
                         {
                             Id = 181L,
                             Admin_Name = "Pohjois-Karjala",
-                            City = "Polvij�rvi",
+                            City = "Polvijärvi",
                             Country = "Finland",
                             Lat = "62.8550",
                             Lng = "29.3667",
@@ -1926,7 +1926,7 @@ namespace backend.Migrations
                         {
                             Id = 184L,
                             Admin_Name = "Pohjois-Savo",
-                            City = "Sonkaj�rvi",
+                            City = "Sonkajärvi",
                             Country = "Finland",
                             Lat = "63.6667",
                             Lng = "27.5167",
@@ -1965,8 +1965,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 188L,
-                            Admin_Name = "P�ij�t-H�me",
-                            City = "Sysm�",
+                            Admin_Name = "Päijät-Häme",
+                            City = "Sysmä",
                             Country = "Finland",
                             Lat = "61.5028",
                             Lng = "25.6847",
@@ -1986,7 +1986,7 @@ namespace backend.Migrations
                         {
                             Id = 190L,
                             Admin_Name = "Keski-Suomi",
-                            City = "Pet�j�vesi",
+                            City = "Petäjävesi",
                             Country = "Finland",
                             Lat = "62.2500",
                             Lng = "25.1833",
@@ -2016,7 +2016,7 @@ namespace backend.Migrations
                         {
                             Id = 193L,
                             Admin_Name = "Pohjois-Savo",
-                            City = "Vierem�",
+                            City = "Vieremä",
                             Country = "Finland",
                             Lat = "63.7431",
                             Lng = "27.0014",
@@ -2025,7 +2025,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 194L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Rantasalmi",
                             Country = "Finland",
                             Lat = "62.0667",
@@ -2045,7 +2045,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 196L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Kuortane",
                             Country = "Finland",
                             Lat = "62.8083",
@@ -2075,7 +2075,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 199L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Savitaipale",
                             Country = "Finland",
                             Lat = "61.2000",
@@ -2085,8 +2085,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 200L,
-                            Admin_Name = "Etel�-Savo",
-                            City = "Hein�vesi",
+                            Admin_Name = "Etelä-Savo",
+                            City = "Heinävesi",
                             Country = "Finland",
                             Lat = "62.4250",
                             Lng = "28.6333",
@@ -2185,8 +2185,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 210L,
-                            Admin_Name = "Etel�-Pohjanmaa",
-                            City = "Lappaj�rvi",
+                            Admin_Name = "Etelä-Pohjanmaa",
+                            City = "Lappajärvi",
                             Country = "Finland",
                             Lat = "63.2167",
                             Lng = "23.6333",
@@ -2196,7 +2196,7 @@ namespace backend.Migrations
                         {
                             Id = 211L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Pyh�joki",
+                            City = "Pyhäjoki",
                             Country = "Finland",
                             Lat = "64.4667",
                             Lng = "24.2583",
@@ -2235,7 +2235,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 215L,
-                            Admin_Name = "P�ij�t-H�me",
+                            Admin_Name = "Päijät-Häme",
                             City = "Padasjoki",
                             Country = "Finland",
                             Lat = "61.3500",
@@ -2255,7 +2255,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 217L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Lemi",
                             Country = "Finland",
                             Lat = "61.0611",
@@ -2265,7 +2265,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 218L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Vimpeli",
                             Country = "Finland",
                             Lat = "63.1617",
@@ -2295,7 +2295,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 221L,
-                            Admin_Name = "P�ij�t-H�me",
+                            Admin_Name = "Päijät-Häme",
                             City = "Hartola",
                             Country = "Finland",
                             Lat = "61.5784",
@@ -2306,7 +2306,7 @@ namespace backend.Migrations
                         {
                             Id = 222L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Reisj�rvi",
+                            City = "Reisjärvi",
                             Country = "Finland",
                             Lat = "63.6056",
                             Lng = "24.9319",
@@ -2316,7 +2316,7 @@ namespace backend.Migrations
                         {
                             Id = 223L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Utaj�rvi",
+                            City = "Utajärvi",
                             Country = "Finland",
                             Lat = "64.7500",
                             Lng = "26.4167",
@@ -2346,7 +2346,7 @@ namespace backend.Migrations
                         {
                             Id = 226L,
                             Admin_Name = "Uusimaa",
-                            City = "Lapptr�sk",
+                            City = "Lappträsk",
                             Country = "Finland",
                             Lat = "60.6167",
                             Lng = "26.2000",
@@ -2365,7 +2365,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 228L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Sulkava",
                             Country = "Finland",
                             Lat = "61.7875",
@@ -2386,7 +2386,7 @@ namespace backend.Migrations
                         {
                             Id = 230L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "K�rs�m�ki",
+                            City = "Kärsämäki",
                             Country = "Finland",
                             Lat = "63.9750",
                             Lng = "25.7583",
@@ -2396,7 +2396,7 @@ namespace backend.Migrations
                         {
                             Id = 231L,
                             Admin_Name = "Satakunta",
-                            City = "K�yli�",
+                            City = "Köyliö",
                             Country = "Finland",
                             Lat = "61.1167",
                             Lng = "22.3083",
@@ -2415,8 +2415,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 233L,
-                            Admin_Name = "Etel�-Pohjanmaa",
-                            City = "Evij�rvi",
+                            Admin_Name = "Etelä-Pohjanmaa",
+                            City = "Evijärvi",
                             Country = "Finland",
                             Lat = "63.3667",
                             Lng = "23.4750",
@@ -2455,8 +2455,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 237L,
-                            Admin_Name = "Kanta-H�me",
-                            City = "Yp�j�",
+                            Admin_Name = "Kanta-Häme",
+                            City = "Ypäjä",
                             Country = "Finland",
                             Lat = "60.8083",
                             Lng = "23.2833",
@@ -2465,7 +2465,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 238L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Humppila",
                             Country = "Finland",
                             Lat = "60.9250",
@@ -2506,7 +2506,7 @@ namespace backend.Migrations
                         {
                             Id = 242L,
                             Admin_Name = "Pohjois-Karjala",
-                            City = "R��kkyl�",
+                            City = "Rääkkylä",
                             Country = "Finland",
                             Lat = "62.3133",
                             Lng = "29.6250",
@@ -2535,7 +2535,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 245L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Hirvensalmi",
                             Country = "Finland",
                             Lat = "61.6389",
@@ -2545,7 +2545,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 246L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Puumala",
                             Country = "Finland",
                             Lat = "61.5250",
@@ -2565,7 +2565,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 248L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Soini",
                             Country = "Finland",
                             Lat = "62.8750",
@@ -2576,7 +2576,7 @@ namespace backend.Migrations
                         {
                             Id = 249L,
                             Admin_Name = "Pohjanmaa",
-                            City = "Korsn�s",
+                            City = "Korsnäs",
                             Country = "Finland",
                             Lat = "62.7833",
                             Lng = "21.1833",
@@ -2596,7 +2596,7 @@ namespace backend.Migrations
                         {
                             Id = 251L,
                             Admin_Name = "Varsinais-Suomi",
-                            City = "Pyh�ranta",
+                            City = "Pyhäranta",
                             Country = "Finland",
                             Lat = "60.9500",
                             Lng = "21.4417",
@@ -2605,7 +2605,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 252L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Isojoki",
                             Country = "Finland",
                             Lat = "62.1139",
@@ -2615,8 +2615,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 253L,
-                            Admin_Name = "P�ij�t-H�me",
-                            City = "H�meenkoski",
+                            Admin_Name = "Päijät-Häme",
+                            City = "Hämeenkoski",
                             Country = "Finland",
                             Lat = "61.0250",
                             Lng = "25.1500",
@@ -2626,7 +2626,7 @@ namespace backend.Migrations
                         {
                             Id = 254L,
                             Admin_Name = "Kymenlaakso",
-                            City = "Miehikk�l�",
+                            City = "Miehikkälä",
                             Country = "Finland",
                             Lat = "60.6708",
                             Lng = "27.7000",
@@ -2646,7 +2646,7 @@ namespace backend.Migrations
                         {
                             Id = 256L,
                             Admin_Name = "Pirkanmaa",
-                            City = "Kihni�",
+                            City = "Kihniö",
                             Country = "Finland",
                             Lat = "62.2083",
                             Lng = "23.1792",
@@ -2665,7 +2665,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 258L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Lemland",
                             Country = "Finland",
                             Lat = "60.0806",
@@ -2686,7 +2686,7 @@ namespace backend.Migrations
                         {
                             Id = 260L,
                             Admin_Name = "Uusimaa",
-                            City = "Myrskyl�",
+                            City = "Myrskylä",
                             Country = "Finland",
                             Lat = "60.6667",
                             Lng = "25.8500",
@@ -2706,7 +2706,7 @@ namespace backend.Migrations
                         {
                             Id = 262L,
                             Admin_Name = "Satakunta",
-                            City = "J�mij�rvi",
+                            City = "Jämijärvi",
                             Country = "Finland",
                             Lat = "61.8167",
                             Lng = "22.6917",
@@ -2726,7 +2726,7 @@ namespace backend.Migrations
                         {
                             Id = 264L,
                             Admin_Name = "Lappi",
-                            City = "Enonteki�",
+                            City = "Enontekiö",
                             Country = "Finland",
                             Lat = "68.3847",
                             Lng = "23.6389",
@@ -2745,7 +2745,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 266L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Pertunmaa",
                             Country = "Finland",
                             Lat = "61.5028",
@@ -2816,7 +2816,7 @@ namespace backend.Migrations
                         {
                             Id = 273L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Pyh�nt�",
+                            City = "Pyhäntä",
                             Country = "Finland",
                             Lat = "64.0972",
                             Lng = "26.3306",
@@ -2825,7 +2825,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 274L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Hammarland",
                             Country = "Finland",
                             Lat = "60.2167",
@@ -2845,7 +2845,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 276L,
-                            Admin_Name = "Etel�-Savo",
+                            Admin_Name = "Etelä-Savo",
                             City = "Enonkoski",
                             Country = "Finland",
                             Lat = "62.0889",
@@ -2866,7 +2866,7 @@ namespace backend.Migrations
                         {
                             Id = 278L,
                             Admin_Name = "Keski-Suomi",
-                            City = "Kyyj�rvi",
+                            City = "Kyyjärvi",
                             Country = "Finland",
                             Lat = "63.0431",
                             Lng = "24.5639",
@@ -2876,7 +2876,7 @@ namespace backend.Migrations
                         {
                             Id = 279L,
                             Admin_Name = "Varsinais-Suomi",
-                            City = "Orip��",
+                            City = "Oripää",
                             Country = "Finland",
                             Lat = "60.8556",
                             Lng = "22.6972",
@@ -2885,7 +2885,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 280L,
-                            Admin_Name = "Etel�-Pohjanmaa",
+                            Admin_Name = "Etelä-Pohjanmaa",
                             City = "Karijoki",
                             Country = "Finland",
                             Lat = "62.3083",
@@ -2896,7 +2896,7 @@ namespace backend.Migrations
                         {
                             Id = 281L,
                             Admin_Name = "Kainuu",
-                            City = "Ristij�rvi",
+                            City = "Ristijärvi",
                             Country = "Finland",
                             Lat = "64.5056",
                             Lng = "28.2139",
@@ -2936,7 +2936,7 @@ namespace backend.Migrations
                         {
                             Id = 285L,
                             Admin_Name = "Keski-Suomi",
-                            City = "Kivij�rvi",
+                            City = "Kivijärvi",
                             Country = "Finland",
                             Lat = "63.1200",
                             Lng = "25.0750",
@@ -2946,7 +2946,7 @@ namespace backend.Migrations
                         {
                             Id = 286L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Merij�rvi",
+                            City = "Merijärvi",
                             Country = "Finland",
                             Lat = "64.2967",
                             Lng = "24.4467",
@@ -2985,8 +2985,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 290L,
-                            Admin_Name = "�land",
-                            City = "Ecker�",
+                            Admin_Name = "Ahvenanmaa",
+                            City = "Eckerö",
                             Country = "Finland",
                             Lat = "60.2167",
                             Lng = "19.5500",
@@ -3006,7 +3006,7 @@ namespace backend.Migrations
                         {
                             Id = 292L,
                             Admin_Name = "Keski-Pohjanmaa",
-                            City = "Lestij�rvi",
+                            City = "Lestijärvi",
                             Country = "Finland",
                             Lat = "63.5250",
                             Lng = "24.6653",
@@ -3025,8 +3025,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 294L,
-                            Admin_Name = "�land",
-                            City = "Br�nd�",
+                            Admin_Name = "Ahvenanmaa",
+                            City = "Brändö",
                             Country = "Finland",
                             Lat = "60.4117",
                             Lng = "21.0453",
@@ -3035,7 +3035,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 295L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Geta",
                             Country = "Finland",
                             Lat = "60.3750",
@@ -3045,8 +3045,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 296L,
-                            Admin_Name = "�land",
-                            City = "V�rd�",
+                            Admin_Name = "Ahvenanmaa",
+                            City = "Vårdö",
                             Country = "Finland",
                             Lat = "60.2417",
                             Lng = "20.3750",
@@ -3055,7 +3055,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 297L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Lumparland",
                             Country = "Finland",
                             Lat = "60.1167",
@@ -3065,7 +3065,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 298L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Kumlinge",
                             Country = "Finland",
                             Lat = "60.2583",
@@ -3075,7 +3075,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 299L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Sottunga",
                             Country = "Finland",
                             Lat = "60.1333",
@@ -3094,7 +3094,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 301L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Turenki",
                             Country = "Finland",
                             Lat = "60.9167",
@@ -3103,7 +3103,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 302L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Parola",
                             Country = "Finland",
                             Lat = "61.0500",
@@ -3112,7 +3112,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 303L,
-                            Admin_Name = "Kanta-H�me",
+                            Admin_Name = "Kanta-Häme",
                             City = "Oitti",
                             Country = "Finland",
                             Lat = "60.7833",
@@ -3121,7 +3121,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 304L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Godby",
                             Country = "Finland",
                             Lat = "60.2300",
@@ -3130,8 +3130,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 305L,
-                            Admin_Name = "P�ij�t-H�me",
-                            City = "J�rvel�",
+                            Admin_Name = "Päijät-Häme",
+                            City = "Järvelä",
                             Country = "Finland",
                             Lat = "60.8680",
                             Lng = "25.2730"
@@ -3140,7 +3140,7 @@ namespace backend.Migrations
                         {
                             Id = 306L,
                             Admin_Name = "Kymenlaakso",
-                            City = "Siltakyl�",
+                            City = "Siltakylä",
                             Country = "Finland",
                             Lat = "60.4958",
                             Lng = "26.7097"
@@ -3148,8 +3148,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 307L,
-                            Admin_Name = "P�ij�t-H�me",
-                            City = "V��ksy",
+                            Admin_Name = "Päijät-Häme",
+                            City = "Vääksy",
                             Country = "Finland",
                             Lat = "61.1722",
                             Lng = "25.5472"
@@ -3157,8 +3157,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 308L,
-                            Admin_Name = "�land",
-                            City = "�dkarby",
+                            Admin_Name = "Ahvenanmaa",
+                            City = "Ödkarby",
                             Country = "Finland",
                             Lat = "60.3073",
                             Lng = "19.9862"
@@ -3167,7 +3167,7 @@ namespace backend.Migrations
                         {
                             Id = 309L,
                             Admin_Name = "Pohjanmaa",
-                            City = "Benn�s",
+                            City = "Bennäs",
                             Country = "Finland",
                             Lat = "63.6000",
                             Lng = "22.7917"
@@ -3185,7 +3185,7 @@ namespace backend.Migrations
                         {
                             Id = 311L,
                             Admin_Name = "Varsinais-Suomi",
-                            City = "Kyr�",
+                            City = "Kyrö",
                             Country = "Finland",
                             Lat = "60.7000",
                             Lng = "22.7500"
@@ -3194,7 +3194,7 @@ namespace backend.Migrations
                         {
                             Id = 312L,
                             Admin_Name = "Varsinais-Suomi",
-                            City = "Vinkkil�",
+                            City = "Vinkkilä",
                             Country = "Finland",
                             Lat = "60.6833",
                             Lng = "21.7167"
@@ -3211,7 +3211,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 314L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Simpele",
                             Country = "Finland",
                             Lat = "61.4333",
@@ -3229,8 +3229,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 316L,
-                            Admin_Name = "�land",
-                            City = "Bj�rby",
+                            Admin_Name = "Ahvenanmaa",
+                            City = "Björby",
                             Country = "Finland",
                             Lat = "60.2572",
                             Lng = "20.1342"
@@ -3247,7 +3247,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 318L,
-                            Admin_Name = "Etel�-Karjala",
+                            Admin_Name = "Etelä-Karjala",
                             City = "Taavetti",
                             Country = "Finland",
                             Lat = "60.9167",
@@ -3256,8 +3256,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 319L,
-                            Admin_Name = "�land",
-                            City = "F�gl�",
+                            Admin_Name = "Ahvenanmaa",
+                            City = "Föglö",
                             Country = "Finland",
                             Lat = "60.0000",
                             Lng = "20.4333"
@@ -3266,7 +3266,7 @@ namespace backend.Migrations
                         {
                             Id = 320L,
                             Admin_Name = "Pohjois-Pohjanmaa",
-                            City = "Pyh�salmi",
+                            City = "Pyhäsalmi",
                             Country = "Finland",
                             Lat = "63.6833",
                             Lng = "25.9833"
@@ -3274,7 +3274,7 @@ namespace backend.Migrations
                         new
                         {
                             Id = 321L,
-                            Admin_Name = "�land",
+                            Admin_Name = "Ahvenanmaa",
                             City = "Karlby",
                             Country = "Finland",
                             Lat = "59.9167",
@@ -3301,8 +3301,8 @@ namespace backend.Migrations
                         new
                         {
                             Id = 324L,
-                            Admin_Name = "�land",
-                            City = "�va",
+                            Admin_Name = "Ahvenanmaa",
+                            City = "Åva",
                             Country = "Finland",
                             Lat = "60.4667",
                             Lng = "21.0833"

@@ -1,10 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace backend.Models
 {
     public class DataContext : DbContext
     {
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<SalesArticle> SalesArticles { get; set; } = null!;
+        public DbSet<Location> Locations { get; set; } = null!;
+
         public DataContext(DbContextOptions<DataContext> options) :
             base(options)
         {
@@ -13,11 +18,22 @@ namespace backend.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseSerialColumns();
+            seedLocations(modelBuilder);
+        }
 
-            var path = Path.Combine(Directory.GetCurrentDirectory() + "/assets/finlandCities.json");
-            string json = System.IO.File.ReadAllText(path, System.Text.Encoding.Default);
-            List<Location> locations = JsonConvert.DeserializeObject<List<Location>>(json);
-   
+        private void seedLocations(ModelBuilder modelBuilder)
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory() + "/assets/finlandCities.json");
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            string content = String.Empty;
+
+            using (StreamReader r = new StreamReader(path, Encoding.GetEncoding(1252)))
+            {
+                content = r.ReadToEnd();
+            }
+
+            List<Location> locations = JsonConvert.DeserializeObject<List<Location>>(content)!;
+
             for (int i = 1; i < locations.Count; i++)
             {
                 Location location = locations[i];
@@ -25,10 +41,5 @@ namespace backend.Models
                 modelBuilder.Entity<Location>().HasData(location);
             }
         }
-
-        public DbSet<User> Users { get; set; } = null!;
-        public DbSet<SalesArticle> SalesArticles { get; set; } = null!;
-
-        public DbSet<Location> Locations { get; set; } = null!;
     }
 }
