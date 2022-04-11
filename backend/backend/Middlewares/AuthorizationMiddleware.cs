@@ -4,7 +4,7 @@ using System.Text;
 
 using backend.Interfaces.Repositories;
 
-namespace backend.Helpers
+namespace backend.Middlewares
 {
     public class AuthorizationMiddleware
     {

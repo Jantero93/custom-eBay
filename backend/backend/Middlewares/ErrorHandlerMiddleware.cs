@@ -1,4 +1,6 @@
-﻿namespace backend.Helpers
+﻿using backend.Helpers;
+
+namespace backend.Middlewares
 {
     /// <summary>
     /// Global error handler to handle common REST API errors.
