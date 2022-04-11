@@ -26,7 +26,14 @@ namespace backend.Middlewares
 
             if (userId != null)
             {
-                context.Items["User"] = await _userRepository.GetUser(userId.Value);
+                try
+                {
+                    context.Items["User"] = await _userRepository.GetUser(userId.Value);
+                }
+                catch
+                {
+                  
+                }
             }
 
             await _next(context);

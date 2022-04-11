@@ -40,6 +40,19 @@
         ></b-form-textarea>
       </b-form-group>
 
+      <b-form-group>
+        <label>City</label>
+        <b-form-select v-model="form.city">
+          <b-form-select-option value="">Select city</b-form-select-option>
+          <b-form-select-option
+            v-for="city in cities"
+            :key="city"
+            :value="city"
+            >{{ city }}</b-form-select-option
+          >
+        </b-form-select>
+      </b-form-group>
+
       <b-form-group label="Photos">
         <b-form-file
           id="file-default"
@@ -90,6 +103,7 @@ interface ComponentState {
   price: number;
   files: File[];
   errors: string[];
+  city: string;
 }
 
 export default Vue.extend({
@@ -102,13 +116,17 @@ export default Vue.extend({
         name: '',
         price: 0,
         files: [],
-        errors: []
+        errors: [],
+        city: ''
       }
     };
   },
   computed: {
     filesToImages(): string[] {
       return this.form.files.map((file) => URL.createObjectURL(file));
+    },
+    cities(): string[] {
+      return this.$store.getters.cities;
     }
   },
   methods: {
@@ -125,6 +143,7 @@ export default Vue.extend({
         salesArticle.append('name', this.form.name);
         salesArticle.append('price', this.form.price.toString());
         salesArticle.append('description', this.form.description);
+        salesArticle.append('city', this.form.city);
         this.form.files.forEach((file) => salesArticle.append(`images`, file));
 
         await postSalesArticle(salesArticle);
@@ -150,6 +169,7 @@ export default Vue.extend({
       if (!this.form.name.length) this.form.errors.push('Name required');
       if (this.form.price < 0) this.form.errors.push('Price required');
       if (this.form.files.length > 10) this.form.errors.push('Max 10 photos');
+      if (!this.form.city) this.form.errors.push('Select city');
     }
   }
 });

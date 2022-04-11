@@ -34,10 +34,10 @@
           <label>City*</label>
           <b-form-select v-model="form.city" required>
             <b-form-select-option
-              v-for="location in finlandCities"
-              :key="location.city"
-              :value="location.city"
-              >{{ location.city }}</b-form-select-option
+              v-for="city in finlandCities"
+              :key="city"
+              :value="city"
+              >{{ city }}</b-form-select-option
             >
           </b-form-select>
         </b-form-group>

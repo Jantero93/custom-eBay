@@ -3325,6 +3325,9 @@ namespace backend.Migrations
                     b.Property<int>("ItemCondition")
                         .HasColumnType("integer");
 
+                    b.Property<long?>("LocationId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -3338,6 +3341,8 @@ namespace backend.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("UserId");
 
@@ -3407,11 +3412,17 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.SalesArticle", b =>
                 {
+                    b.HasOne("backend.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
                     b.HasOne("backend.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Location");
 
                     b.Navigation("User");
                 });

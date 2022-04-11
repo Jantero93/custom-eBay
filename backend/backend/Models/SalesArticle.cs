@@ -29,6 +29,8 @@ namespace backend.Models
         [Required]
         public User? User { get; set; }
 
+        public Location? Location { get; set; }
+
         public string? Created { get; set; }
     }
 }

@@ -16,8 +16,8 @@ export default new Vuex.Store<UserInfo>({
     isLogged: (state): boolean => state.loggedIn,
     username: (state): string => state.username,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    cities: (): any[] =>
-      cities.sort((a, b) => a.city.localeCompare(b.city, 'sv')),
+    cities: (): string[] =>
+      cities.map((city) => city.city).sort((a, b) => a.localeCompare(b, 'sv')),
     // Get unique admin names for cities
     cityAdminNames: (): string[] =>
       [...new Set(cities.map((city) => city.admin_name))].sort((a, b) =>

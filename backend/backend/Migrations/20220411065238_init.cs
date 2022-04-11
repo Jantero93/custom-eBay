@@ -65,11 +65,17 @@ namespace backend.Migrations
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     ItemCondition = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
+                    LocationId = table.Column<long>(type: "bigint", nullable: true),
                     Created = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalesArticles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SalesArticles_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SalesArticles_Users_UserId",
                         column: x => x.UserId,
@@ -434,6 +440,11 @@ namespace backend.Migrations
                 name: "IX_Image_SalesArticleId",
                 table: "Image",
                 column: "SalesArticleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesArticles_LocationId",
+                table: "SalesArticles",
+                column: "LocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesArticles_UserId",

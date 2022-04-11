@@ -12,7 +12,7 @@ using backend.Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220411063551_init")]
+    [Migration("20220411065238_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -3327,6 +3327,9 @@ namespace backend.Migrations
                     b.Property<int>("ItemCondition")
                         .HasColumnType("integer");
 
+                    b.Property<long?>("LocationId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -3340,6 +3343,8 @@ namespace backend.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("UserId");
 
@@ -3409,11 +3414,17 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.SalesArticle", b =>
                 {
+                    b.HasOne("backend.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
                     b.HasOne("backend.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Location");
 
                     b.Navigation("User");
                 });

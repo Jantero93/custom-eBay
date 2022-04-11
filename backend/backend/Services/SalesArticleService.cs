@@ -26,7 +26,8 @@ namespace backend.Services
                 ItemCondition = item.ItemCondition,
                 Price = item.Price,
                 User = user,
-                Images = new List<Image>()
+                Images = new List<Image>(),
+                Location = await _locationRepository.GetLocationByCity(item.City)
             };
 
             if (item.Images != null)
