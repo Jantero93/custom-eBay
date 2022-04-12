@@ -17,10 +17,11 @@ export type Image = {
 export type SalesArticle = {
   id: string;
   condition: Condition;
+  created: string;
   name: string;
   description: string;
   price: number;
   images: Image[];
-  User: User;
-  Location: Location;
+  user: User;
+  location: Location;
 };
