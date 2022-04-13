@@ -8,11 +8,18 @@
     :title="item.name"
     @click="cardClicked"
   >
-    <div class="d-flex flex-row justify-content-between">
-      <p class="price-text font-weight-bold">{{ item.price }} €</p>
-      <div class="text-right text-muted secondary-text">
-        <p>{{ itemListedDate }}</p>
-        <p>{{ itemProvince }}</p>
+    <div>
+      <div class="d-flex flex-row justify-content-between">
+        <div class="d-flex flex-column align-items-start">
+          <p class="price-text font-weight-bold">{{ item.price }} €</p>
+          <b-badge v-if="imageCount" class="item-badge" variant="success">
+            {{ imageCount }}<b-icon class="ml-1" icon="camera-fill"
+          /></b-badge>
+        </div>
+        <div class="text-right text-muted secondary-text">
+          <p>{{ itemListedDate }}</p>
+          <p>{{ itemProvince }}</p>
+        </div>
       </div>
     </div>
   </b-card>
@@ -40,6 +47,9 @@ export default Vue.extend({
     imageAvailable(): boolean {
       return this.item.images[0] !== undefined;
     },
+    imageCount(): number {
+      return this.item.images.length || 0;
+    },
     itemListedDate(): string {
       return formatDate('DD MMM HH:mm', this.item.created);
     },
@@ -49,7 +59,7 @@ export default Vue.extend({
   },
   methods: {
     cardClicked() {
-      this.$router.replace({ path: `/articles/${this.item.id}` });
+      this.$router.push({ path: `/articles/${this.item.id}` });
     }
   }
 });
@@ -68,12 +78,18 @@ img {
   margin-right: 0.5em;
 }
 
+.card-body {
+  overflow: hidden;
+}
+
 .card-title {
-  font-size: 2.75em;
+  font-size: 2.25em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .price-text {
-  font-size: 2em;
+  font-size: 1.75em;
 }
 
 .secondary-text > p {
@@ -89,6 +105,10 @@ img {
     margin-right: 0em;
   }
 
+  .card-body {
+    padding: 0.5em;
+  }
+
   .price-text {
     font-size: 1em;
   }
@@ -100,6 +120,10 @@ img {
   .secondary-text > p {
     margin: 0;
     font-size: 0.8em;
+  }
+
+  .item-badge {
+    display: none;
   }
 }
 </style>

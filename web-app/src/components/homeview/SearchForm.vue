@@ -3,12 +3,12 @@
     <b-form inline>
       <b-form-input
         v-model="state.searchTerms"
-        size="lg"
-        class="mb-2 mr-sm-2 mb-sm-0"
+        size="md"
+        class="mb-2 mr-mb-2 mb-sm-0"
         placeholder="Search items"
       ></b-form-input>
 
-      <b-form-select v-model="state.adminName" size="lg">
+      <b-form-select v-model="state.adminName" class="ml-sm-2 ml-0" size="md">
         <b-form-select-option value="Finland">Finland</b-form-select-option>
         <b-form-select-option
           v-for="admin in adminNames"
@@ -21,7 +21,7 @@
       <b-button
         class="mt-2 mt-sm-0 ml-0 ml-sm-2"
         variant="success"
-        size="lg"
+        size="md"
         @click="searchClicked"
         >Search</b-button
       >

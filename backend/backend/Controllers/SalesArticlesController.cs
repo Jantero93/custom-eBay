@@ -18,6 +18,18 @@ namespace backend.Controllers
             _salesArticleService = itemService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SalesArticle>>> GetSalesArticles()
+        {
+            return await _salesArticleService.GetAll();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SalesArticle>> GetSaleArticle(long id)
+        {
+            return await _salesArticleService.GetOne(id);
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostSalesArticle([FromForm] SaleArticleViewModel item)
         {
@@ -30,12 +42,6 @@ namespace backend.Controllers
 
             await _salesArticleService.PostSalesArticle(item, user);
             return Ok();
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<SalesArticle>>> GetSalesArticles()
-        {
-            return await _salesArticleService.GetAll();
         }
     }
 }

@@ -37,6 +37,13 @@ const routes: Array<RouteConfig> = [
     },
     component: () =>
       import(/* webpackChunkName: "list-item" */ '../views/ListItemView.vue')
+  },
+  {
+    path: '/articles/:id',
+    name: 'article',
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "item" */ '../views/SalesArticleView.vue')
   }
 ];
 

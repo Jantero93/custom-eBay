@@ -18,6 +18,7 @@ namespace backend.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseSerialColumns();
+
             seedLocations(modelBuilder);
         }
 

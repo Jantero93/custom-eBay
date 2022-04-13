@@ -57,6 +57,7 @@ static void AddServices(WebApplicationBuilder builder)
     builder.Services.AddDbContext<DataContext>(
         options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
         );
+
 }
 
 static void AddCors(WebApplicationBuilder builder)

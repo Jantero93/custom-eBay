@@ -2,7 +2,7 @@
   <div class="d-flex flex-column">
     <SearchForm class="mt-5" />
     <span class="mt-3 border-top align-self-stretch" />
-    <div v-if="apiDataFetched">
+    <div v-if="apiDataFetched" class="d-flex flex-column align-baseline">
       <SalesArticle
         v-for="article in state.articles"
         :key="article.id"
@@ -16,7 +16,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import SalesArticle from '@/components/homeview/SalesArticle.vue';
+import SalesArticle from '@/components/homeview/SalesArticleListItem.vue';
 import SearchForm from '@/components/homeview/SearchForm.vue';
 
 import { getAllSalesArticle } from '@/services/salesarticles';

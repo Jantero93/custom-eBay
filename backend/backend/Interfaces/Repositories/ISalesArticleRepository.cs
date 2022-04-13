@@ -6,5 +6,6 @@ namespace backend.Interfaces.Repositories
     {
         public Task<SalesArticle> AddSalesArticle(SalesArticle item);
         public Task<List<SalesArticle>> GetAllSalesArticles();
+        public Task<SalesArticle> GetSalesArticle(long id);
     }
 }

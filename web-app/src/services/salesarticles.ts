@@ -9,6 +9,11 @@ export const getAllSalesArticle = async (): Promise<SalesArticle[]> => {
   return request.data;
 };
 
+export const getSaleArticle = async (id: number): Promise<SalesArticle> => {
+  const request = await axios.get(`${BASE_URL}/${id}`);
+  return request.data;
+};
+
 export const postSalesArticle = async (
   saleArticle: FormData
 ): Promise<void> => {

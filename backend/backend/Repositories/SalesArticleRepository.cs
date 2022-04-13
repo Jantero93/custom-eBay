@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using backend.Helpers;
 using backend.Interfaces.Repositories;
 using backend.Models;
 
@@ -29,6 +30,22 @@ namespace backend.Repositories
                 .Include(s => s.Location)
                 .Include(s => s.Images)
                 .ToListAsync();
+        }
+
+        public async Task<SalesArticle> GetSalesArticle(long id)
+        {
+            SalesArticle? item = await _context.SalesArticles
+                .Include(s => s.User)
+                .Include(s => s.Images)
+                .Include(s => s.Location)
+                .SingleOrDefaultAsync(s => s.Id == id);
+
+            if (item == null)
+            {
+                throw new AppException("No sales article by id " + id, StatusCodes.Status404NotFound);
+            }
+
+            return item;
         }
     }
 }

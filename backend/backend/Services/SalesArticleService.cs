@@ -22,6 +22,11 @@ namespace backend.Services
             return await _salesArticleRepository.GetAllSalesArticles();
         }
 
+        public async Task<SalesArticle> GetOne(long id)
+        {
+            return await _salesArticleRepository.GetSalesArticle(id);
+        }
+
         public async Task<SalesArticle> PostSalesArticle(SaleArticleViewModel item, User user)
         {
             var salesArticle = new SalesArticle()

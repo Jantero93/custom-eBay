@@ -14,5 +14,29 @@
 
             return null;
         }
+
+        public static string RoleEnumToString(UserRole role)
+        {
+            return role switch
+            {
+                UserRole.Normal => "Normal",
+                UserRole.Admin => "Admin",
+                UserRole.Root => "Root",
+                UserRole.Banned => "Banned",
+                _ => "Normal"
+            };
+        }
+
+        public static UserRole StringToRoleEnum(string role)
+        {
+            return role switch
+            {
+                "Normal" => UserRole.Normal,
+                "Admin" => UserRole.Admin,
+                "Root" => UserRole.Root,
+                "Banned" => UserRole.Banned,
+                _ => UserRole.Normal
+            };
+        }
     }
 }
