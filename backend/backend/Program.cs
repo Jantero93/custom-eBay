@@ -36,8 +36,11 @@ app.MapControllers();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<AuthorizationMiddleware>();
 
-app.Run();
+// Serve static content from wwwroot folder on root path
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
+app.Run();
 
 static void AddServices(WebApplicationBuilder builder)
 {
