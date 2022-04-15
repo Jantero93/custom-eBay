@@ -29,16 +29,25 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.UseMiddleware<ErrorHandlerMiddleware>();
-app.UseMiddleware<AuthorizationMiddleware>();
 
 // Serve static content from wwwroot folder on root path
 app.UseDefaultFiles();
 app.UseStaticFiles();
+
+// Fallback to client routing if no match in server
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapFallbackToFile("/index.html");
+});
+
+app.UseMiddleware<AuthorizationMiddleware>();
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
 
 app.Run();
 
