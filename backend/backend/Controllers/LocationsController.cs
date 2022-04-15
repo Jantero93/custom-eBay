@@ -16,7 +16,7 @@ namespace backend.Controllers
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Locations
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {

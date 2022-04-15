@@ -29,7 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 // Serve static content from wwwroot folder on root path
 app.UseDefaultFiles();
 app.UseStaticFiles();

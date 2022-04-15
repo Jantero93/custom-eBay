@@ -51,7 +51,7 @@ namespace backend.Services
 
         public async Task<UserDto> GetUser(string username)
         {
-            User user = await _userRepository.GetUserByUsername(username);
+            User user = await _userRepository.GetUser(username);
 
             return new UserDto()
             {
@@ -82,7 +82,7 @@ namespace backend.Services
         public async Task<string> Login(UserViewModel user)
         {
 
-            User DbUser = await _userRepository.GetUserByUsername(user.Username);
+            User DbUser = await _userRepository.GetUser(user.Username);
 
             bool passwordCorrect = BCrypt.Net.BCrypt.Verify(user.Password, DbUser.Password);
 

@@ -66,7 +66,7 @@ namespace backend.Repositories
             return user;
         }
 
-        public async Task<User> GetUserByUsername(string username)
+        public async Task<User> GetUser(string username)
         {
             User? user = await _context.Users
                 .SingleOrDefaultAsync(u => u.Username.ToLower() == username.ToLower());
