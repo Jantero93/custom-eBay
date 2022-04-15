@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web-app:
+    container_name: web-app
+    build:
+      context: ./
+      dockerfile: .dockerfiles/web-app.dockerfile
+    ports:
+      - "3000:3000"
