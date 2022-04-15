@@ -8,6 +8,7 @@ namespace backend.Interfaces.Services
     {
         Task DeleteUser(long id);
         Task<UserDto> GetUser(long id);
+        Task<UserDto> GetUser(string username);
         Task<List<UserDto>> GetUsers();
         Task<string> Login(UserViewModel user);
         Task<UserDto> PostUser(UserViewModel user);

@@ -7,6 +7,7 @@ import { getLocations } from '@/services/locations';
 export interface AppState {
   loggedIn: boolean;
   username: string;
+  userId?: number;
   locations: Location[];
 }
 
@@ -16,6 +17,7 @@ export default new Vuex.Store<AppState>({
   state: {
     loggedIn: false,
     username: '',
+    userId: undefined,
     locations: []
   },
   getters: {
@@ -29,12 +31,14 @@ export default new Vuex.Store<AppState>({
     cityAdminNames: (state): string[] =>
       [...new Set(state.locations.map((l) => l.admin_Name))].sort((a, b) =>
         a.localeCompare(b, 'sv')
-      )
+      ),
+    userId: (state): number | undefined => state.userId
   },
   mutations: {
     setLoggingInfo(state, loggedInfo: AppState): void {
       state.loggedIn = loggedInfo.loggedIn;
       state.username = loggedInfo.username;
+      state.userId = loggedInfo.userId;
     },
     clearLoggingInfo(state): void {
       state.loggedIn = false;

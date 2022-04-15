@@ -65,7 +65,7 @@ namespace backend.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserViewModel user)
+        public async Task<ActionResult<UserDto>> Login(UserViewModel user)
         {
             string token = await _userService.Login(user);
 
@@ -76,7 +76,7 @@ namespace backend.Controllers
                 Secure = true
             });
 
-            return Ok();
+            return Ok(await _userService.GetUser(user.Username));
         }
 
         [HttpPost("logout")]

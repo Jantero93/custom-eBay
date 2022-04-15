@@ -76,17 +76,19 @@ export default Vue.extend({
       if (this.form.errors.length) return;
 
       try {
-        await loginUser({
+        const response = await loginUser({
           username: this.form.username,
           password: this.form.password
         });
 
         this.$store.commit('setLoggingInfo', {
           loggedIn: true,
-          username: this.form.username
+          username: response.username,
+          userId: response.id
         });
 
         saveLoginLocalStorage(this.form.username);
+
         this.$router.replace({ path: '/' });
       } catch (error) {
         this.form.errors.push(

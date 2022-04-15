@@ -10,11 +10,12 @@
         width="auto"
         :src="imagesAvailable ? imageData : require('@/assets/no-image.png')"
       />
+      <!-- On click open image modal -->
       <b-badge
         v-if="imagesAvailable"
+        v-b-modal.image-zoom-modal
         class="mt-1 expand-badge"
         :style="{ maxWidth: '100px' }"
-        @click="expandImage"
         >Click to enlarge</b-badge
       >
     </div>
@@ -68,11 +69,17 @@
         {{ state.salesArticle.description }}
       </p>
     </div>
+    <ImageModal
+      v-if="imagesAvailable"
+      :image="getImageData(state.selectedImageIndex)"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+
+import ImageModal from '@/components/salesarticleview/ImageModal.vue';
 
 import { getSaleArticle } from '@/services/salesarticles';
 
@@ -88,6 +95,7 @@ interface ComponentState {
 
 export default Vue.extend({
   name: 'SalesArticleView',
+  components: { ImageModal },
   props: {
     id: {
       type: String,
@@ -127,9 +135,6 @@ export default Vue.extend({
     this.state.salesArticle = await getSaleArticle(Number(this.id));
   },
   methods: {
-    expandImage() {
-      console.log('expand');
-    },
     formatDate: formatDateHelper,
     getImageData(index: number): string {
       return `data:${this.state.salesArticle?.images[index].type};base64,${this.state.salesArticle?.images[index].data}`;
@@ -170,6 +175,7 @@ p {
 
 .expand-badge:hover {
   cursor: pointer;
+  background-color: rgb(190, 190, 190);
 }
 
 @media screen and (max-width: 575px) {

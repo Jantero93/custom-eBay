@@ -49,6 +49,21 @@ namespace backend.Services
             };
         }
 
+        public async Task<UserDto> GetUser(string username)
+        {
+            User user = await _userRepository.GetUserByUsername(username);
+
+            return new UserDto()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber
+            };
+        }
+
         public async Task<List<UserDto>> GetUsers()
         {
             List<User> users = await _userRepository.GetAllUsers();
