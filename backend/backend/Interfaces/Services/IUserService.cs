@@ -10,6 +10,7 @@ namespace backend.Interfaces.Services
         Task<UserDto> GetUser(long id);
         Task<UserDto> GetUser(string username);
         Task<List<UserDto>> GetUsers();
+        Task<List<SalesArticle>> GetUsersSalesArticles(long userId);
         Task<string> Login(UserViewModel user);
         Task<UserDto> PostUser(UserViewModel user);
         Task PutUser(User user);

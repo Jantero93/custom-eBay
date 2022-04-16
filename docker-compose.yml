@@ -1,9 +1,17 @@
 version: '3'
 services:
-  web-app:
-    container_name: web-app
+  asp-net-core:
+    container_name: asp-net-core
     build:
-      context: ./
-      dockerfile: .dockerfiles/web-app.dockerfile
+      context: .
+      dockerfile: .dockerfiles/asp-net.dockerfile
     ports:
-      - "3000:3000"
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    restart: always
+    environment: # db secrets
+    ports: "5432:5432"

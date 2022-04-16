@@ -32,6 +32,13 @@ namespace backend.Controllers
             return await _userService.GetUser(id);
         }
 
+        // GET: api/User/salesarticles
+        [HttpGet("{id}/SalesArticles")]
+        public async Task<ActionResult<IEnumerable<SalesArticle>>> GetUsersSalesArticles(long id)
+        {
+            return await _userService.GetUsersSalesArticles(id);
+        }
+
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

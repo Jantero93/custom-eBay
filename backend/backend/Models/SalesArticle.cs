@@ -27,9 +27,9 @@ namespace backend.Models
         public ICollection<Image>? Images { get; set; }
 
         [Required]
-        public User? User { get; set; }
+        public User User { get; set; } = default!;
 
-        public Location? Location { get; set; }
+        public Location Location { get; set; } = default!;
 
         public string? Created { get; set; }
     }

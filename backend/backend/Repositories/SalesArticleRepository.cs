@@ -47,5 +47,14 @@ namespace backend.Repositories
 
             return item;
         }
+
+        public async Task<List<SalesArticle>> GetSalesArticlesByUserId(long id)
+        {
+            return await _context.SalesArticles
+                .Where(s => s.User.Id == id)
+                .Include(s => s.Images)
+                .Include(s => s.Location)
+                .ToListAsync();
+        }
     }
 }

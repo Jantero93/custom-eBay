@@ -17,14 +17,17 @@ namespace backend.Services
         private readonly IConfiguration _config;
         private readonly ILocationRepository _locationRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ISalesArticleRepository _salesArticleRepository;
 
         public UserService(IConfiguration config,
             IUserRepository userRepository,
-            ILocationRepository locationRepository)
+            ILocationRepository locationRepository,
+            ISalesArticleRepository salesArticleRepository)
         {
             _config = config;
             _locationRepository = locationRepository;
             _userRepository = userRepository;
+            _salesArticleRepository = salesArticleRepository;
         }
 
         public async Task DeleteUser(long id)
@@ -77,6 +80,12 @@ namespace backend.Services
                 LastName = u.LastName,
                 PhoneNumber = u.PhoneNumber
             });
+        }
+
+        public async Task<List<SalesArticle>> GetUsersSalesArticles(long userId)
+        {
+
+            return await _salesArticleRepository.GetSalesArticlesByUserId(userId);
         }
 
         public async Task<string> Login(UserViewModel user)
