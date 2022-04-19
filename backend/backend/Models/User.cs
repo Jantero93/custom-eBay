@@ -17,7 +17,6 @@ namespace backend.Models
 
         [Required]
         [MaxLength(255)]
-        [NotMapped]
         public string? Password { get; set; }
 
         [Required]

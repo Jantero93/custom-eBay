@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
 
 using backend.Interfaces.Services;
 using backend.Interfaces.Repositories;
@@ -31,20 +29,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Serve static content from wwwroot folder on root path
-app.UseDefaultFiles();
-app.UseStaticFiles();
-
-// Fallback to client routing if no match in server
-app.UseRouting();
+app.MapControllers();
 
 app.UseAuthorization();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapFallbackToFile("/index.html");
-});
 
 app.UseMiddleware<AuthorizationMiddleware>();
 app.UseMiddleware<ErrorHandlerMiddleware>();
