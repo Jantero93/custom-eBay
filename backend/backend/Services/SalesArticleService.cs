@@ -19,6 +19,21 @@ namespace backend.Services
 
         public async Task<List<SalesArticle>> GetAll()
         {
+            List<SalesArticle> salesArcticles = await _salesArticleRepository.GetAllSalesArticles();
+
+            foreach (SalesArticle article in salesArcticles)
+            {
+                if (article.Images?.Count > 0)
+                {
+                    Image firstImage = article.Images.First();
+                    article.Images.Clear();
+                    article.Images.Add(firstImage);
+                }
+
+                article.User.Password = null;
+                article.User.Created = null;
+            }
+
             return await _salesArticleRepository.GetAllSalesArticles();
         }
 

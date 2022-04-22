@@ -29,7 +29,9 @@ namespace backend.Repositories
                 .Include(s => s.User)
                 .Include(s => s.Location)
                 .Include(s => s.Images)
+                .OrderByDescending(s => s.Created!)
                 .ToListAsync();
+
         }
 
         public async Task<SalesArticle> GetSalesArticle(long id)

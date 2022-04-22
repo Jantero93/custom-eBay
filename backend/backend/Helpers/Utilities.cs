@@ -1,4 +1,8 @@
-﻿namespace backend.Helpers
+﻿
+
+using System.Drawing;
+
+namespace backend.Helpers
 {
     public static class Utilities
     {
