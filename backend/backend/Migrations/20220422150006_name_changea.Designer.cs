@@ -12,8 +12,8 @@ using backend.Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220412074341_test")]
-    partial class test
+    [Migration("20220422150006_name_changea")]
+    partial class name_changea
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,7 +53,7 @@ namespace backend.Migrations
 
                     b.HasIndex("SalesArticleId");
 
-                    b.ToTable("Image");
+                    b.ToTable("images");
                 });
 
             modelBuilder.Entity("backend.Models.Location", b =>
@@ -89,7 +89,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations");
+                    b.ToTable("locations");
 
                     b.HasData(
                         new
@@ -3318,6 +3318,7 @@ namespace backend.Migrations
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Created")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
@@ -3327,7 +3328,7 @@ namespace backend.Migrations
                     b.Property<int>("ItemCondition")
                         .HasColumnType("integer");
 
-                    b.Property<long?>("LocationId")
+                    b.Property<long>("LocationId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
@@ -3348,7 +3349,7 @@ namespace backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SalesArticles");
+                    b.ToTable("sale_articles");
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -3402,7 +3403,7 @@ namespace backend.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Users");
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("backend.Models.Image", b =>
@@ -3416,7 +3417,9 @@ namespace backend.Migrations
                 {
                     b.HasOne("backend.Models.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("backend.Models.User", "User")
                         .WithMany()

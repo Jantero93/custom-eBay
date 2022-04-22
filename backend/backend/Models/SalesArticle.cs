@@ -5,6 +5,7 @@ using backend.Helpers;
 
 namespace backend.Models
 {
+    [Table("sale_articles")]
     public class SalesArticle
     {
         [Key]
@@ -24,13 +25,13 @@ namespace backend.Models
         [Required]
         public ItemCondition ItemCondition { get; set; }
 
-        public ICollection<Image>? Images { get; set; }
+        public ICollection<Image> Images { get; set; } = default!;
 
         [Required]
         public User User { get; set; } = default!;
 
         public Location Location { get; set; } = default!;
 
-        public string? Created { get; set; }
+        public string Created { get; set; } = String.Empty;
     }
 }

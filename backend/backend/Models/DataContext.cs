@@ -2,6 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
+
 namespace backend.Models
 {
     public class DataContext : DbContext
@@ -18,6 +19,8 @@ namespace backend.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseSerialColumns();
+
+
 
             seedLocations(modelBuilder);
         }

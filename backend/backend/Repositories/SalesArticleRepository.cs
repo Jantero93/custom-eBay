@@ -23,15 +23,18 @@ namespace backend.Repositories
             return item;
         }
 
-        public async Task<List<SalesArticle>> GetAllSalesArticles()
+        public async Task<List<SalesArticle>> GetAllSalesArticles(int page = 0)
         {
+            const int pageSize = 10;
+
             return await _context.SalesArticles
                 .Include(s => s.User)
                 .Include(s => s.Location)
                 .Include(s => s.Images)
-                .OrderByDescending(s => s.Created!)
+                .OrderByDescending(s => s.Created)
+                .Skip(page * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
-
         }
 
         public async Task<SalesArticle> GetSalesArticle(long id)
@@ -48,6 +51,11 @@ namespace backend.Repositories
             }
 
             return item;
+        }
+
+        public int GetSalesArticleCount()
+        {
+            return _context.SalesArticles.Count();
         }
 
         public async Task<List<SalesArticle>> GetSalesArticlesByUserId(long id)

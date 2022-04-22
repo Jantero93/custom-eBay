@@ -25,16 +25,16 @@ namespace backend.Services
             {
                 if (article.Images?.Count > 0)
                 {
-                    Image firstImage = article.Images.First();
-                    article.Images.Clear();
-                    article.Images.Add(firstImage);
+                    article.Images = article.Images.Select((Image image, int index) =>
+                         index == 0 ? image : new Image()
+                    ).ToList();
                 }
 
                 article.User.Password = null;
                 article.User.Created = null;
             }
 
-            return await _salesArticleRepository.GetAllSalesArticles();
+            return salesArcticles;
         }
 
         public async Task<SalesArticle> GetOne(long id)

@@ -6,12 +6,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace backend.Migrations
 {
-    public partial class test : Migration
+    public partial class name_changea : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Locations",
+                name: "locations",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -25,11 +25,11 @@ namespace backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locations", x => x.Id);
+                    table.PrimaryKey("PK_locations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "users",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -46,16 +46,16 @@ namespace backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_Locations_LocationId",
+                        name: "FK_users_locations_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "Locations",
+                        principalTable: "locations",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "SalesArticles",
+                name: "sale_articles",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -65,27 +65,28 @@ namespace backend.Migrations
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     ItemCondition = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
-                    LocationId = table.Column<long>(type: "bigint", nullable: true),
-                    Created = table.Column<string>(type: "text", nullable: true)
+                    LocationId = table.Column<long>(type: "bigint", nullable: false),
+                    Created = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalesArticles", x => x.Id);
+                    table.PrimaryKey("PK_sale_articles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SalesArticles_Locations_LocationId",
+                        name: "FK_sale_articles_locations_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "Locations",
-                        principalColumn: "Id");
+                        principalTable: "locations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SalesArticles_Users_UserId",
+                        name: "FK_sale_articles_users_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Image",
+                name: "images",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -97,16 +98,16 @@ namespace backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Image", x => x.Id);
+                    table.PrimaryKey("PK_images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Image_SalesArticles_SalesArticleId",
+                        name: "FK_images_sale_articles_SalesArticleId",
                         column: x => x.SalesArticleId,
-                        principalTable: "SalesArticles",
+                        principalTable: "sale_articles",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
-                table: "Locations",
+                table: "locations",
                 columns: new[] { "Id", "Admin_Name", "City", "Country", "Lat", "Lng", "Population" },
                 values: new object[,]
                 {
@@ -437,39 +438,39 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Image_SalesArticleId",
-                table: "Image",
+                name: "IX_images_SalesArticleId",
+                table: "images",
                 column: "SalesArticleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalesArticles_LocationId",
-                table: "SalesArticles",
+                name: "IX_sale_articles_LocationId",
+                table: "sale_articles",
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalesArticles_UserId",
-                table: "SalesArticles",
+                name: "IX_sale_articles_UserId",
+                table: "sale_articles",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_LocationId",
-                table: "Users",
+                name: "IX_users_LocationId",
+                table: "users",
                 column: "LocationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Image");
+                name: "images");
 
             migrationBuilder.DropTable(
-                name: "SalesArticles");
+                name: "sale_articles");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "users");
 
             migrationBuilder.DropTable(
-                name: "Locations");
+                name: "locations");
         }
     }
 }
