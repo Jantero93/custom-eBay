@@ -2,6 +2,7 @@
   <div class="d-flex flex-column">
     <SearchForm class="mt-5" />
     <span class="mt-3 border-top align-self-stretch" />
+
     <div v-if="apiDataFetched" class="d-flex flex-column align-baseline">
       <SalesArticle
         v-for="article in state.articles"
@@ -10,6 +11,13 @@
         :item="article"
       />
     </div>
+
+    <b-pagination
+      v-model="state.currentPage"
+      total-rows="100"
+      per-page="10"
+      size="lg"
+    ></b-pagination>
   </div>
 </template>
 
@@ -25,6 +33,7 @@ import { SalesArticle as ISalesArticle } from '@/types/salesArticle';
 
 interface ComponentState {
   articles: ISalesArticle[];
+  currentPage: number;
 }
 
 export default Vue.extend({
@@ -33,7 +42,8 @@ export default Vue.extend({
   data(): { state: ComponentState } {
     return {
       state: {
-        articles: []
+        articles: [],
+        currentPage: 1
       }
     };
   },
@@ -44,6 +54,11 @@ export default Vue.extend({
   },
   async created() {
     this.state.articles = await getAllSalesArticle();
+  },
+  methods: {
+    generateLink(page: number): string {
+      return `/articles?page=${page}`;
+    }
   }
 });
 </script>
