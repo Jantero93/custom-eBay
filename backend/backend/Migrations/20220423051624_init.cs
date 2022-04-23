@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace backend.Migrations
 {
-    public partial class name_changea : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,101 +14,101 @@ namespace backend.Migrations
                 name: "locations",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    City = table.Column<string>(type: "text", nullable: false),
-                    Lat = table.Column<string>(type: "text", nullable: false),
-                    Lng = table.Column<string>(type: "text", nullable: false),
-                    Country = table.Column<string>(type: "text", nullable: false),
-                    Admin_Name = table.Column<string>(type: "text", nullable: false),
-                    Population = table.Column<int>(type: "integer", nullable: true)
+                    city = table.Column<string>(type: "text", nullable: false),
+                    lat = table.Column<string>(type: "text", nullable: false),
+                    lng = table.Column<string>(type: "text", nullable: false),
+                    country = table.Column<string>(type: "text", nullable: false),
+                    admin_name = table.Column<string>(type: "text", nullable: false),
+                    population = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_locations", x => x.Id);
+                    table.PrimaryKey("pk_locations", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "users",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Username = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
-                    Password = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    LocationId = table.Column<long>(type: "bigint", nullable: true),
-                    Role = table.Column<int>(type: "integer", nullable: false),
-                    Created = table.Column<string>(type: "text", nullable: true)
+                    username = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    password = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    firstname = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    lastname = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    phonenumber = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    locationid = table.Column<long>(type: "bigint", nullable: true),
+                    role = table.Column<int>(type: "integer", nullable: false),
+                    created = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_users", x => x.Id);
+                    table.PrimaryKey("pk_users", x => x.id);
                     table.ForeignKey(
-                        name: "FK_users_locations_LocationId",
-                        column: x => x.LocationId,
+                        name: "fk_users_locations_locationid",
+                        column: x => x.locationid,
                         principalTable: "locations",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "sale_articles",
+                name: "salesarticles",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    ItemCondition = table.Column<int>(type: "integer", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    LocationId = table.Column<long>(type: "bigint", nullable: false),
-                    Created = table.Column<string>(type: "text", nullable: false)
+                    name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
+                    price = table.Column<decimal>(type: "numeric", nullable: false),
+                    itemcondition = table.Column<int>(type: "integer", nullable: false),
+                    userid = table.Column<long>(type: "bigint", nullable: false),
+                    locationid = table.Column<long>(type: "bigint", nullable: false),
+                    created = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_sale_articles", x => x.Id);
+                    table.PrimaryKey("pk_salesarticles", x => x.id);
                     table.ForeignKey(
-                        name: "FK_sale_articles_locations_LocationId",
-                        column: x => x.LocationId,
+                        name: "fk_salesarticles_locations_locationid",
+                        column: x => x.locationid,
                         principalTable: "locations",
-                        principalColumn: "Id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_sale_articles_users_UserId",
-                        column: x => x.UserId,
+                        name: "fk_salesarticles_users_userid",
+                        column: x => x.userid,
                         principalTable: "users",
-                        principalColumn: "Id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "images",
+                name: "image",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Data = table.Column<byte[]>(type: "bytea", nullable: false),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    Type = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
-                    SalesArticleId = table.Column<long>(type: "bigint", nullable: true)
+                    data = table.Column<byte[]>(type: "bytea", nullable: false),
+                    name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    type = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
+                    salesarticleid = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_images", x => x.Id);
+                    table.PrimaryKey("pk_image", x => x.id);
                     table.ForeignKey(
-                        name: "FK_images_sale_articles_SalesArticleId",
-                        column: x => x.SalesArticleId,
-                        principalTable: "sale_articles",
-                        principalColumn: "Id");
+                        name: "fk_image_salesarticles_salesarticleid",
+                        column: x => x.salesarticleid,
+                        principalTable: "salesarticles",
+                        principalColumn: "id");
                 });
 
             migrationBuilder.InsertData(
                 table: "locations",
-                columns: new[] { "Id", "Admin_Name", "City", "Country", "Lat", "Lng", "Population" },
+                columns: new[] { "id", "admin_name", "city", "country", "lat", "lng", "population" },
                 values: new object[,]
                 {
                     { 1L, "Uusimaa", "Espoo", "Finland", "60.2100", "24.6600", 269802 },
@@ -438,33 +438,33 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_images_SalesArticleId",
-                table: "images",
-                column: "SalesArticleId");
+                name: "ix_image_salesarticleid",
+                table: "image",
+                column: "salesarticleid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_sale_articles_LocationId",
-                table: "sale_articles",
-                column: "LocationId");
+                name: "ix_salesarticles_locationid",
+                table: "salesarticles",
+                column: "locationid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_sale_articles_UserId",
-                table: "sale_articles",
-                column: "UserId");
+                name: "ix_salesarticles_userid",
+                table: "salesarticles",
+                column: "userid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_users_LocationId",
+                name: "ix_users_locationid",
                 table: "users",
-                column: "LocationId");
+                column: "locationid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "images");
+                name: "image");
 
             migrationBuilder.DropTable(
-                name: "sale_articles");
+                name: "salesarticles");
 
             migrationBuilder.DropTable(
                 name: "users");

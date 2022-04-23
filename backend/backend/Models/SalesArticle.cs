@@ -5,7 +5,6 @@ using backend.Helpers;
 
 namespace backend.Models
 {
-    [Table("sale_articles")]
     public class SalesArticle
     {
         [Key]

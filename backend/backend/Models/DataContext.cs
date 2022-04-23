@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Newtonsoft.Json;
-
+using Microsoft.Extensions.Configuration;
 
 namespace backend.Models
 {
@@ -21,8 +21,17 @@ namespace backend.Models
             modelBuilder.UseSerialColumns();
 
 
-
             seedLocations(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json")
+                .Build().GetSection("ConnectionStrings")["ebay-backend"];
+
+            optionsBuilder.UseNpgsql(connectionString)
+                .UseLowerCaseNamingConvention();
+            
         }
 
         private void seedLocations(ModelBuilder modelBuilder)
