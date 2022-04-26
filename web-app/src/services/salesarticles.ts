@@ -1,16 +1,14 @@
 import axios from 'axios';
 
+import { Pager } from '@/types/api';
 import { SalesArticle } from '@/types/salesArticle';
 
 const BASE_URL = '/api/salesarticles';
 
-export const getAllSalesArticle = async (): Promise<SalesArticle[]> => {
-  const params = new URLSearchParams([
-    ['test', 'one'],
-    ['time', 'testTime']
-  ]);
-
-  const request = await axios.get(BASE_URL, { params });
+export const getSalesArticlesByPage = async (
+  pageNum: number
+): Promise<Pager<SalesArticle>> => {
+  const request = await axios.get(BASE_URL, { params: { page: pageNum } });
   return request.data;
 };
 

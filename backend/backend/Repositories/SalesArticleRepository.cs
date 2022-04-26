@@ -23,16 +23,14 @@ namespace backend.Repositories
             return item;
         }
 
-        public async Task<List<SalesArticle>> GetAllSalesArticles(int page = 0)
+        public async Task<List<SalesArticle>> GetAllSalesArticles(int pageNum, int pageSize)
         {
-            const int pageSize = 10;
-
             return await _context.SalesArticles
                 .Include(s => s.User)
                 .Include(s => s.Location)
                 .Include(s => s.Images)
                 .OrderByDescending(s => s.Created)
-                .Skip(page * pageSize)
+                .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
         }

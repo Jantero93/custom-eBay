@@ -3,6 +3,7 @@ using backend.Interfaces.Services;
 using backend.Models;
 using backend.Models.ViewModels;
 using backend.Helpers;
+using backend.Models.Misc;
 
 namespace backend.Services
 {
@@ -17,11 +18,19 @@ namespace backend.Services
             _salesArticleRepository = salesArticleRepository;
         }
 
-        public async Task<List<SalesArticle>> GetAll()
-        {
-            List<SalesArticle> salesArcticles = await _salesArticleRepository.GetAllSalesArticles();
 
-            foreach (SalesArticle article in salesArcticles)
+        public async Task<SalesArticle> GetOne(long id)
+        {
+            return await _salesArticleRepository.GetSalesArticle(id);
+        }
+
+        public async Task<Pager<SalesArticle>> GetSalesArticlePage(int pageNum)
+        {
+            const int PAGE_SIZE = 5;
+
+            List<SalesArticle> salesArticles = await _salesArticleRepository.GetSalesArticlesPage(pageNum, PAGE_SIZE);
+
+            foreach (SalesArticle article in salesArticles)
             {
                 if (article.Images?.Count > 0)
                 {
@@ -34,12 +43,12 @@ namespace backend.Services
                 article.User.Created = null;
             }
 
-            return salesArcticles;
-        }
-
-        public async Task<SalesArticle> GetOne(long id)
-        {
-            return await _salesArticleRepository.GetSalesArticle(id);
+            return new Pager<SalesArticle>(
+                salesArticles,
+                _salesArticleRepository.GetSalesArticleCount(),
+                pageNum,
+                PAGE_SIZE
+                );
         }
 
         public async Task<SalesArticle> PostSalesArticle(SaleArticleViewModel item, User user)

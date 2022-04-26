@@ -13,7 +13,8 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    alias: '/articles'
   },
   {
     path: '/login',

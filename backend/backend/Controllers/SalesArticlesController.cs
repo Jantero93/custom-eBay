@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using backend.Interfaces.Services;
-using backend.Models.ViewModels;
 using backend.Models;
+using backend.Models.Misc;
+using backend.Models.ViewModels;
 
 namespace backend.Controllers
 
@@ -19,9 +20,14 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SalesArticle>>> GetSalesArticles()
+        public async Task<ActionResult<Pager<SalesArticle>>> GetSalesArticlesPage([FromQuery(Name = "page")] int page)
         {
-            return await _salesArticleService.GetAll();
+            if (page <= 0)
+            {
+                return BadRequest();
+            }
+
+            return await _salesArticleService.GetSalesArticlePage(page);
         }
 
         [HttpGet("{id}")]

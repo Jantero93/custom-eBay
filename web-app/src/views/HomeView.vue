@@ -3,7 +3,7 @@
     <SearchForm class="mt-5" />
     <span class="mt-3 border-top align-self-stretch" />
 
-    <div v-if="apiDataFetched" class="d-flex flex-column align-baseline">
+    <div v-if="apiDataFetched" class="d-flex flex-column align-baseline mb-3">
       <SalesArticle
         v-for="article in state.articles"
         :key="article.id"
@@ -12,12 +12,16 @@
       />
     </div>
 
-    <b-pagination
-      v-model="state.currentPage"
-      total-rows="100"
-      per-page="10"
+    <b-pagination-nav
+      v-if="multiplePages"
+      align="fill"
+      class="pagination-nav"
+      :link-gen="generateLink"
+      :number-of-pages="state.totalPages"
+      use-router
       size="lg"
-    ></b-pagination>
+      @change="fetchNewPage"
+    />
   </div>
 </template>
 
@@ -27,13 +31,17 @@ import Vue from 'vue';
 import SalesArticle from '@/components/homeview/SalesArticleListItem.vue';
 import SearchForm from '@/components/homeview/SearchForm.vue';
 
-import { getAllSalesArticle } from '@/services/salesarticles';
+import { getSalesArticlesByPage } from '@/services/salesarticles';
 
 import { SalesArticle as ISalesArticle } from '@/types/salesArticle';
+import { Pager } from '@/types/api';
 
 interface ComponentState {
   articles: ISalesArticle[];
   currentPage: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
 }
 
 export default Vue.extend({
@@ -43,21 +51,40 @@ export default Vue.extend({
     return {
       state: {
         articles: [],
-        currentPage: 1
+        currentPage: 1,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false
       }
     };
   },
   computed: {
     apiDataFetched(): boolean {
       return this.state.articles.length > 0;
+    },
+    multiplePages(): boolean {
+      return this.state.totalPages > 1;
     }
   },
   async created() {
-    this.state.articles = await getAllSalesArticle();
+    this.setStateFromApiCall(await getSalesArticlesByPage(1));
   },
   methods: {
-    generateLink(page: number): string {
-      return `/articles?page=${page}`;
+    async fetchNewPage(pageNum: number) {
+      this.setStateFromApiCall(await getSalesArticlesByPage(pageNum));
+    },
+    generateLink(pageNum: number): string {
+      return pageNum === 1 ? '/' : `/articles?page=${pageNum}`;
+    },
+    setStateFromApiCall(pager: Pager<ISalesArticle>) {
+      const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } =
+        pager;
+
+      this.state.currentPage = currentPage;
+      this.state.totalPages = totalPages;
+      this.state.hasNextPage = hasNextPage;
+      this.state.hasPreviousPage = hasPreviousPage;
+      this.state.articles = items;
     }
   }
 });
