@@ -19,7 +19,7 @@
       :link-gen="generateLink"
       :number-of-pages="state.totalPages"
       use-router
-      size="lg"
+      size="md"
       @change="fetchNewPage"
     />
   </div>
@@ -33,11 +33,10 @@ import SearchForm from '@/components/homeview/SearchForm.vue';
 
 import { getSalesArticlesByPage } from '@/services/salesarticles';
 
-import { SalesArticle as ISalesArticle } from '@/types/salesArticle';
-import { Pager } from '@/types/api';
+import { ApiSalesArticle, Pager } from '@/types/api';
 
 interface ComponentState {
-  articles: ISalesArticle[];
+  articles: ApiSalesArticle[];
   currentPage: number;
   totalPages: number;
   hasNextPage: boolean;
@@ -74,17 +73,18 @@ export default Vue.extend({
       this.setStateFromApiCall(await getSalesArticlesByPage(pageNum));
     },
     generateLink(pageNum: number): string {
+      // Do not generate link on the first page
       return pageNum === 1 ? '/' : `/articles?page=${pageNum}`;
     },
-    setStateFromApiCall(pager: Pager<ISalesArticle>) {
+    setStateFromApiCall(pager: Pager<ApiSalesArticle>) {
       const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } =
         pager;
 
+      this.state.articles = items;
       this.state.currentPage = currentPage;
       this.state.totalPages = totalPages;
       this.state.hasNextPage = hasNextPage;
       this.state.hasPreviousPage = hasPreviousPage;
-      this.state.articles = items;
     }
   }
 });

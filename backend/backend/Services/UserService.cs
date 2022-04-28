@@ -33,7 +33,6 @@ namespace backend.Services
         public async Task DeleteUser(long id)
         {
             User user = await _userRepository.GetUser(id);
-
             await _userRepository.DeleteUser(user);
         }
 
@@ -92,7 +91,6 @@ namespace backend.Services
         {
 
             User DbUser = await _userRepository.GetUser(user.Username);
-
             bool passwordCorrect = BCrypt.Net.BCrypt.Verify(user.Password, DbUser.Password);
 
             if (!passwordCorrect)

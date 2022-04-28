@@ -4,6 +4,7 @@ using backend.Models;
 using backend.Models.ViewModels;
 using backend.Helpers;
 using backend.Models.Misc;
+using backend.Models.DataTransferObjects;
 
 namespace backend.Services
 {
@@ -18,40 +19,41 @@ namespace backend.Services
             _salesArticleRepository = salesArticleRepository;
         }
 
-
         public async Task<SalesArticle> GetOne(long id)
         {
             return await _salesArticleRepository.GetSalesArticle(id);
         }
 
-        public async Task<Pager<SalesArticle>> GetSalesArticlePage(int pageNum)
+        public async Task<Pager<SalesArticleDto>> GetSalesArticlePage(int pageNum)
         {
             const int PAGE_SIZE = 5;
 
-            List<SalesArticle> salesArticles = await _salesArticleRepository.GetSalesArticlesPage(pageNum, PAGE_SIZE);
+            List<SalesArticle> salesArticles = await _salesArticleRepository.GetAllSalesArticles(pageNum, PAGE_SIZE);
 
-            foreach (SalesArticle article in salesArticles)
-            {
-                if (article.Images?.Count > 0)
+            List<SalesArticleDto> salesArticlesDto = salesArticles.Select(s =>
+                new SalesArticleDto()
                 {
-                    article.Images = article.Images.Select((Image image, int index) =>
-                         index == 0 ? image : new Image()
-                    ).ToList();
+                    Created = s.Created,
+                    Description = s.Description,
+                    Id = s.Id,
+                    Image = s.Images?.Count > 0 ? s.Images.ElementAt(0) : null,
+                    ImageCount = s.Images?.Count ?? 0,
+                    ItemCondition = s.ItemCondition,
+                    Location = s.Location,
+                    Name = s.Name,
+                    Price = s.Price
                 }
+            ).ToList();
 
-                article.User.Password = null;
-                article.User.Created = null;
-            }
-
-            return new Pager<SalesArticle>(
-                salesArticles,
-                _salesArticleRepository.GetSalesArticleCount(),
-                pageNum,
-                PAGE_SIZE
-                );
+            return new Pager<SalesArticleDto>(
+              salesArticlesDto,
+              _salesArticleRepository.GetSalesArticleCount(),
+              pageNum,
+              PAGE_SIZE
+              );
         }
 
-        public async Task<SalesArticle> PostSalesArticle(SaleArticleViewModel item, User user)
+        public async Task<SalesArticle> PostSalesArticle(SalesArticleFromViewModel item, User user)
         {
             var salesArticle = new SalesArticle()
             {
@@ -76,7 +78,5 @@ namespace backend.Services
 
             return await _salesArticleRepository.AddSalesArticle(salesArticle);
         }
-
-
     }
 }

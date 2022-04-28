@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import { Pager } from '@/types/api';
+import { ApiSalesArticle, Pager } from '@/types/api';
 import { SalesArticle } from '@/types/salesArticle';
 
 const BASE_URL = '/api/salesarticles';
 
 export const getSalesArticlesByPage = async (
   pageNum: number
-): Promise<Pager<SalesArticle>> => {
+): Promise<Pager<ApiSalesArticle>> => {
   const request = await axios.get(BASE_URL, { params: { page: pageNum } });
   return request.data;
 };

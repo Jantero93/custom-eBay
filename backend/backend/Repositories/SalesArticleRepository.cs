@@ -25,7 +25,7 @@ namespace backend.Repositories
 
         public async Task<List<SalesArticle>> GetAllSalesArticles(int pageNum, int pageSize)
         {
-            return await _context.SalesArticles
+            return await _context.SalesArticles.AsNoTracking()
                 .Include(s => s.User)
                 .Include(s => s.Location)
                 .Include(s => s.Images)

@@ -30,25 +30,25 @@ import Vue, { PropType } from 'vue';
 
 import { formatDate } from '@/utilities/dateHelpers';
 
-import { SalesArticle } from '@/types/salesArticle';
+import { ApiSalesArticle } from '@/types/api';
 
 export default Vue.extend({
   name: 'SalesArticle',
   props: {
     item: {
-      type: Object as PropType<SalesArticle>,
+      type: Object as PropType<ApiSalesArticle>,
       required: true
     }
   },
   computed: {
     articleImageSrc(): string {
-      return `data:${this.item.images[0].type};base64,${this.item.images[0].data}`;
+      return `data:${this.item.image.type};base64,${this.item.image.data}`;
     },
     imageAvailable(): boolean {
-      return this.item.images[0] !== undefined;
+      return this.item.image !== undefined;
     },
     imageCount(): number {
-      return this.item.images.length || 0;
+      return this.item.imageCount;
     },
     itemListedDate(): string {
       return formatDate('DD MMM HH:mm', this.item.created);

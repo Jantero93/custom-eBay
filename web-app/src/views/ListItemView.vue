@@ -41,7 +41,7 @@
       </b-form-group>
 
       <b-form-group>
-        <label>City</label>
+        <label>City*</label>
         <b-form-select v-model="form.city">
           <b-form-select-option value="">Select city</b-form-select-option>
           <b-form-select-option

@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 
-import HomeView from '@/views/HomeView.vue';
-
 import store from '@/store/store';
 
 import { isLoggingExpired } from '@/utilities/localStorageHelpers';
@@ -13,21 +11,22 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: () =>
+      import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
     alias: '/articles'
   },
   {
     path: '/login',
     name: 'login',
     component: () =>
-      import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+      import(/* webpackChunkName: "login" */ '@/views/LoginView.vue')
   },
   {
     path: '/login/signup',
     name: 'signup',
     component: () =>
       import(
-        /* webpackChunkName: "signup" */ '../components/loginview/SignUpForm.vue'
+        /* webpackChunkName: "signup" */ '@/components/loginview/SignUpForm.vue'
       )
   },
   {
@@ -37,14 +36,14 @@ const routes: Array<RouteConfig> = [
       requiresAuth: true
     },
     component: () =>
-      import(/* webpackChunkName: "list-item" */ '../views/ListItemView.vue')
+      import(/* webpackChunkName: "list-item" */ '@/views/ListItemView.vue')
   },
   {
     path: '/articles/:id',
     name: 'article',
     props: true,
     component: () =>
-      import(/* webpackChunkName: "item" */ '../views/SalesArticleView.vue')
+      import(/* webpackChunkName: "item" */ '@/views/SalesArticleView.vue')
   }
 ];
 

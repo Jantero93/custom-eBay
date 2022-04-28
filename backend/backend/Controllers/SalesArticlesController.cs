@@ -4,6 +4,7 @@ using backend.Interfaces.Services;
 using backend.Models;
 using backend.Models.Misc;
 using backend.Models.ViewModels;
+using backend.Models.DataTransferObjects;
 
 namespace backend.Controllers
 
@@ -20,7 +21,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Pager<SalesArticle>>> GetSalesArticlesPage([FromQuery(Name = "page")] int page)
+        public async Task<ActionResult<Pager<SalesArticleDto>>> GetSalesArticlesPage([FromQuery(Name = "page")] int page)
         {
             if (page <= 0)
             {
@@ -37,7 +38,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostSalesArticle([FromForm] SaleArticleViewModel item)
+        public async Task<IActionResult> PostSalesArticle([FromForm] SalesArticleFromViewModel item)
         {
             User? user = HttpContext.Items["User"] as User;
 

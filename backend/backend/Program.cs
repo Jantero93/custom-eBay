@@ -6,11 +6,11 @@ using backend.Middlewares;
 using backend.Models;
 using backend.Repositories;
 using backend.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 AddServices(builder);
-
 AddCors(builder);
 
 var app = builder.Build();
@@ -49,7 +49,8 @@ static void AddServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<ILocationRepository, LocationRepository>();
     builder.Services.AddControllers().AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.IgnoreNullValues = true;
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -60,11 +61,6 @@ static void AddServices(WebApplicationBuilder builder)
     builder.Services.AddDbContext<DataContext>(
          options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
          );
-
-
-
-
-
 }
 
 static void AddCors(WebApplicationBuilder builder)
@@ -79,5 +75,4 @@ static void AddCors(WebApplicationBuilder builder)
             .AllowAnyMethod();
         });
     });
-
 }

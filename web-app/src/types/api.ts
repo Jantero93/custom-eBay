@@ -1,3 +1,5 @@
+import { Location } from '@/types/location';
+import { Image } from '@/types/salesArticle';
 export interface Pager<T> {
   currentPage: number;
   hasNextPage: boolean;
@@ -7,3 +9,14 @@ export interface Pager<T> {
   totalPages: number;
   totalCount: number;
 }
+
+export type ApiSalesArticle = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: Image;
+  imageCount: number;
+  location: Location;
+  created: string;
+};
