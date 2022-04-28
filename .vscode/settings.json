@@ -1,6 +1,26 @@
 {
-    "cSpell.words": [
-        "loginview",
-        "salesarticles"
-    ]
+  "cSpell.words": [
+    "homeview",
+    "itemcondition",
+    "loginview",
+    "mymodal",
+    "salesarticles",
+    "salesarticleview"
+  ],
+  "restoreTerminals.runOnStartup": false,
+  "restoreTerminals.terminals": [
+    {
+
+      "splitTerminals": [
+        {
+          "name": "server",
+          "commands": ["cd backend", "cd backend", "dotnet watch"]
+        },
+        {
+          "name": "client",
+          "commands": ["cd web-app", "npm run serve"]
+        }
+      ]
+    }
+  ]
 }

@@ -49,7 +49,6 @@ static void AddServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<ILocationRepository, LocationRepository>();
     builder.Services.AddControllers().AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 
