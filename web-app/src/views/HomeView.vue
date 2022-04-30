@@ -57,12 +57,21 @@ export default Vue.extend({
       }
     };
   },
+
   computed: {
     apiDataFetched(): boolean {
       return this.state.articles.length > 0;
     },
     multiplePages(): boolean {
       return this.state.totalPages > 1;
+    }
+  },
+  watch: {
+    // Fetch first page data if for example ebay 'home icon' is pressed
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async $route(to, _from) {
+      to.path === '/' &&
+        this.setStateFromApiCall(await getSalesArticlesByPage(1));
     }
   },
   async created() {

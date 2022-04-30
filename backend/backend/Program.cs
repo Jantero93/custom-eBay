@@ -47,6 +47,7 @@ static void AddServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<ISalesArticleService, SalesArticleService>();
     builder.Services.AddScoped<ISalesArticleRepository, SalesArticleRepository>();
     builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+
     builder.Services.AddControllers().AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
