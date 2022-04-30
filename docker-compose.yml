@@ -1,10 +1,19 @@
 version: '3'
+
+#! localhost -> asp net core
+#! db server -> localhost -> postgres
+#! pass token secret to backend
+
 services:
   asp-net-core:
+    # token secret needs to send
     container_name: asp-net-core
     build:
       context: .
       dockerfile: .dockerfiles/asp-net.Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - token_secret=${TOKEN_SECRET}
     ports:
       - "8080:8080"
     depends_on:
@@ -18,3 +27,9 @@ services:
       dockerfile: .dockerfiles/postgres.Dockerfile
     ports:
       - '5432:5432'
+    environment:
+      POSTGRES_DB: customEbay
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Newtonsoft.Json;
-using Microsoft.Extensions.Configuration;
 
 namespace backend.Models
 {
@@ -26,17 +25,22 @@ namespace backend.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json")
-                .Build().GetSection("ConnectionStrings")["ebay-backend"];
+            string? env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            string connectionString = new ConfigurationBuilder()
+            .AddJsonFile(env == "Development" ? "appsettings.Development.json" : "appsettings.Production.json")
+            .Build()
+            .GetConnectionString("ebay-backend");
+
+            Console.Write("");
 
             optionsBuilder.UseNpgsql(connectionString)
                 .UseLowerCaseNamingConvention();
-            
         }
 
         private void seedLocations(ModelBuilder modelBuilder)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory() + "/assets/finlandCities.json");
+            string path = Path.Combine(Directory.GetCurrentDirectory() + "/Assets/finlandCities.json");
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             string content = String.Empty;
 

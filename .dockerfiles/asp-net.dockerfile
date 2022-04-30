@@ -10,11 +10,13 @@ RUN dotnet restore
 # copy everything else and build app
 COPY backend/backend/. ./backend/
 WORKDIR /source/backend
-RUN dotnet publish -c release -o /app
+#RUN dotnet publish -c release -o /app
+ENTRYPOINT [ "dotnet", "run" ]
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
-COPY --from=build /app ./
-EXPOSE 8080
-ENTRYPOINT ["dotnet", "backend.dll"]
+#FROM mcr.microsoft.com/dotnet/aspnet:6.0
+#WORKDIR /app
+#COPY --from=build /app ./
+#EXPOSE 8080
+#CMD /bin/bash +x ./migrations.sh
+#ENTRYPOINT ["dotnet", "backend.dll"]

@@ -10,6 +10,14 @@ using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var test = builder.Configuration.GetConnectionString("ebay-backend");
+
+// Db context
+builder.Services.AddDbContext<DataContext>(
+     options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
+     );
+
+
 AddServices(builder);
 AddCors(builder);
 
@@ -65,10 +73,7 @@ static void AddServices(WebApplicationBuilder builder)
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    // Db context
-    builder.Services.AddDbContext<DataContext>(
-         options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
-         );
+
 }
 
 static void AddCors(WebApplicationBuilder builder)
