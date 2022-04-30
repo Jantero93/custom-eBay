@@ -4,7 +4,7 @@ services:
     container_name: asp-net-core
     build:
       context: .
-      dockerfile: .dockerfiles/asp-net.dockerfile
+      dockerfile: .dockerfiles/asp-net.Dockerfile
     ports:
       - "8080:8080"
     depends_on:
@@ -13,5 +13,8 @@ services:
   postgres:
     container_name: postgres
     restart: always
-    environment: # db secrets
-    ports: "5432:5432"
+    build:
+      context: .
+      dockerfile: .dockerfiles/postgres.Dockerfile
+    ports:
+      - '5432:5432'

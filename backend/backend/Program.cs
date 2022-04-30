@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 using backend.Interfaces.Services;
 using backend.Interfaces.Repositories;
@@ -6,7 +7,6 @@ using backend.Middlewares;
 using backend.Models;
 using backend.Repositories;
 using backend.Services;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,13 +29,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapControllers();
+// Serve static content from wwwroot folder on root path
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
+// Fallback to client routing if no match in server
+app.UseRouting();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapFallbackToFile("/index.html");
+});
 
 app.UseMiddleware<AuthorizationMiddleware>();
 app.UseMiddleware<ErrorHandlerMiddleware>();
-
 
 app.Run();
 
