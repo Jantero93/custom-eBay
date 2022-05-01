@@ -11,7 +11,7 @@ RUN dotnet restore
 COPY backend/backend/. ./backend/
 WORKDIR /source/backend
 #RUN dotnet publish -c release -o /app
-ENTRYPOINT [ "dotnet", "run" ]
+ENTRYPOINT [ "dotnet", "run", "--launch-profile", "Production" ]
 
 # final stage/image
 #FROM mcr.microsoft.com/dotnet/aspnet:6.0
@@ -19,4 +19,4 @@ ENTRYPOINT [ "dotnet", "run" ]
 #COPY --from=build /app ./
 #EXPOSE 8080
 #CMD /bin/bash +x ./migrations.sh
-#ENTRYPOINT ["dotnet", "backend.dll"]
+#ENTRYPOINT ["dotnet", "backend.dll", "--urls", "http://asp-net-core:8080"]

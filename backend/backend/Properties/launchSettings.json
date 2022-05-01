@@ -9,7 +9,17 @@
     }
   },
   "profiles": {
-    "backend_Test": {
+    "backend": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:8080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Production": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
@@ -17,16 +27,6 @@
       "applicationUrl": "http://asp-net-core:8080",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
-      }
-    },
-    "backend": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      //  "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "IIS Express": {

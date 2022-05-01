@@ -37,6 +37,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<AuthorizationMiddleware>();
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
 // Serve static content from wwwroot folder on root path
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -45,14 +48,12 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapFallbackToFile("/index.html");
 });
-
-app.UseMiddleware<AuthorizationMiddleware>();
-app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.Run();
 
