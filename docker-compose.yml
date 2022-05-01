@@ -1,9 +1,5 @@
 version: '3'
 
-#! localhost -> asp net core
-#! db server -> localhost -> postgres
-#! pass token secret to backend
-
 services:
   asp-net-core:
     # token secret needs to send
@@ -11,6 +7,7 @@ services:
     build:
       context: .
       dockerfile: .dockerfiles/asp-net.Dockerfile
+    restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - token_secret=${TOKEN_SECRET}

@@ -10,13 +10,10 @@ using backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var test = builder.Configuration.GetConnectionString("ebay-backend");
-
 // Db context
 builder.Services.AddDbContext<DataContext>(
      options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
      );
-
 
 AddServices(builder);
 AddCors(builder);
@@ -38,7 +35,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<AuthorizationMiddleware>();
-app.UseMiddleware<ErrorHandlerMiddleware>();
 
 // Serve static content from wwwroot folder on root path
 app.UseDefaultFiles();
@@ -47,6 +43,8 @@ app.UseStaticFiles();
 // Fallback to client routing if no match in server
 app.UseRouting();
 app.UseAuthorization();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseEndpoints(endpoints =>
 {
@@ -72,8 +70,6 @@ static void AddServices(WebApplicationBuilder builder)
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-
-
 }
 
 static void AddCors(WebApplicationBuilder builder)
