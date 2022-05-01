@@ -140,7 +140,7 @@ namespace backend.Services
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             // var key = Encoding.ASCII.GetBytes(_config["token_secret"]);
-            var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("token_secret") ?? "VERY_BAD_TOKEN_SECRET_DEV_ONLY");
+            var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("token_secret"));
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
