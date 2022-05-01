@@ -138,8 +138,11 @@ namespace backend.Services
 
         private string GenerateToken(User user)
         {
+            string? secret = Environment.GetEnvironmentVariable("token_secret");
+            if (secret == null) throw new AppException("Token secret not found", StatusCodes.Status500InternalServerError);
+
+            var key = Encoding.ASCII.GetBytes(secret);
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_config["token_secret"]);
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),

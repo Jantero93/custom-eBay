@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 using backend.Interfaces.Services;
 using backend.Interfaces.Repositories;
@@ -6,9 +7,13 @@ using backend.Middlewares;
 using backend.Models;
 using backend.Repositories;
 using backend.Services;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Db context
+builder.Services.AddDbContext<DataContext>(
+     options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
+     );
 
 AddServices(builder);
 AddCors(builder);
@@ -29,13 +34,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapControllers();
+app.UseMiddleware<AuthorizationMiddleware>();
 
+// Serve static content from wwwroot folder on root path
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+// Fallback to client routing if no match in server
+app.UseRouting();
 app.UseAuthorization();
 
-app.UseMiddleware<AuthorizationMiddleware>();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapFallbackToFile("/index.html");
+});
 
 app.Run();
 
@@ -56,11 +71,6 @@ static void AddServices(WebApplicationBuilder builder)
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-
-    // Db context
-    builder.Services.AddDbContext<DataContext>(
-         options => options.UseNpgsql(builder.Configuration.GetConnectionString("ebay-backend"))
-         );
 }
 
 static void AddCors(WebApplicationBuilder builder)

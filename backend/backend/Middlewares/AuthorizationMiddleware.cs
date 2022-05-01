@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
+using backend.Helpers;
 using backend.Interfaces.Repositories;
 
 namespace backend.Middlewares
@@ -46,8 +47,12 @@ namespace backend.Middlewares
                 return null;
             }
 
+            string? secret = Environment.GetEnvironmentVariable("token_secret");
+            if (secret == null) throw new AppException("Token secret env not found", StatusCodes.Status500InternalServerError);
+
+            var key = Encoding.ASCII.GetBytes(secret);
+
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_config["token_secret"]);
 
             try
             {

@@ -5,7 +5,7 @@
     "loginview",
     "mymodal",
     "salesarticles",
-    "salesarticleview"
+    "salesarticleview",
   ],
   "restoreTerminals.runOnStartup": false,
   "restoreTerminals.terminals": [

@@ -1,10 +1,16 @@
 version: '3'
+
 services:
   asp-net-core:
+    # token secret needs to send
     container_name: asp-net-core
     build:
       context: .
-      dockerfile: .dockerfiles/asp-net.dockerfile
+      dockerfile: .dockerfiles/asp-net.Dockerfile
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - token_secret=${TOKEN_SECRET}
     ports:
       - "8080:8080"
     depends_on:
@@ -13,5 +19,12 @@ services:
   postgres:
     container_name: postgres
     restart: always
-    environment: # db secrets
-    ports: "5432:5432"
+    build:
+      context: .
+      dockerfile: .dockerfiles/postgres.Dockerfile
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: customEbay
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin

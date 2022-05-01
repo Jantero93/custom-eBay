@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "remove-old-build": "rm -rf ../backend/backend/wwwroot",
+    "move-build-backend": "mv dist/ ../backend/backend/wwwroot",
+    "build": "npm run remove-old-build && vue-cli-service build && npm run move-build-backend",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
