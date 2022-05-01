@@ -47,7 +47,7 @@ namespace backend.Middlewares
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_config["token_secret"]);
+            var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("token_secret") ?? "VERY_BAD_TOKEN_SECRET_DEV_ONLY");
 
             try
             {
