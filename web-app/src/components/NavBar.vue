@@ -20,8 +20,11 @@
             <b-dropdown-item @click="logClicked">{{
               userLogged ? 'Log out' : 'Login'
             }}</b-dropdown-item>
+            <b-dropdown-item v-if="userLogged" to="/manage-items"
+              >Listed items</b-dropdown-item
+            >
             <b-dropdown-item v-if="userLogged" to="/list-item"
-              >List Item</b-dropdown-item
+              >New Item</b-dropdown-item
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>

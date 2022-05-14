@@ -44,6 +44,17 @@ const routes: Array<RouteConfig> = [
     props: true,
     component: () =>
       import(/* webpackChunkName: "item" */ '@/views/SalesArticleView.vue')
+  },
+  {
+    path: '/manage-items',
+    name: 'manage-items',
+    meta: {
+      requiresAuth: true
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "manage-items" */ '@/views/ManageListedItemsView.vue'
+      )
   }
 ];
 
