@@ -6,19 +6,23 @@
     "mymodal",
     "salesarticles",
     "salesarticleview",
+    "TTFB"
   ],
   "restoreTerminals.runOnStartup": false,
   "restoreTerminals.terminals": [
     {
-
       "splitTerminals": [
         {
           "name": "server",
           "commands": ["cd backend", "cd backend", "dotnet watch"]
         },
         {
-          "name": "client",
+          "name": "vue-web-app",
           "commands": ["cd web-app", "npm run serve"]
+        },
+        {
+          "name": "react-web-app",
+          "commands": ["cd react-web-app", "npm run start"],
         }
       ]
     }

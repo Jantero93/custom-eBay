@@ -1,7 +1,11 @@
-.Width-125-Px {
+.max-width-200 {
+  max-width: 200px;
+}
+
+.width-125 {
   width: 125px;
 }
 
-.Width-400-Px {
+.width-400 {
   width: 400px;
 }
