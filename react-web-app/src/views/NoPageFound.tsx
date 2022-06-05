@@ -2,7 +2,7 @@
 
 const NoPageFound = () => {
   return (
-    <div>NoPageFound</div>
+    <div>Page not found 404</div>
   )
 }
 
