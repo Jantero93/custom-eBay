@@ -1,0 +1,5 @@
+.D-Flex-Column-Left-Align {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
